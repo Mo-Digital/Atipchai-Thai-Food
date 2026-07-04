@@ -119,12 +119,8 @@
           Von unseren Gästen geliebt
         </p>
         <h2 class="section-title center reveal">Unsere Bestseller</h2>
-      </div>
 
-      <div class="carousel reveal">
-        <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev" aria-label="Vorherige Gerichte anzeigen">‹</button>
-
-        <div class="carousel-track" id="carouselTrack">
+        <div class="dish-grid reveal">
           <article class="dish-card">
             <div class="dish-image">
               <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai" loading="lazy">
@@ -236,9 +232,8 @@
           </article>
         </div>
 
-        <button class="carousel-arrow carousel-arrow--next" id="carouselNext" aria-label="Weitere Gerichte anzeigen">›</button>
+        <p class="dish-grid-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
       </div>
-      <p class="carousel-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
     </section>
 
     <!-- ===== ÖFFNUNGSZEITEN & ANFAHRT ===== -->
@@ -248,29 +243,11 @@
           <svg class="icon-leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c0-9 5-15 16-16-1 11-7 16-16 16z"/><path d="M5 19C10 14 14 10 19 5"/></svg>
           Wann und wo Sie uns finden
         </p>
-        <h2 class="section-title center reveal">Öffnungszeiten &amp; Anfahrt</h2>
+        <h2 class="section-title section-title--compact center reveal">Öffnungszeiten &amp; Anfahrt</h2>
+        <p class="hours-tagline center reveal">Urlaubsfeeling und Geschmack in Heilbronn – komm vorbei, du findest uns.</p>
 
-        <div class="hours-layout">
-          <div class="hours-info reveal">
-            <div class="hours-cards">
-              <div class="hours-card" data-days="2,3,4,5">
-                <h3>Dienstag – Freitag</h3>
-                <p class="hours-time">11:00 – 14:30 Uhr</p>
-                <p class="hours-time">17:00 – 21:00 Uhr</p>
-              </div>
-              <div class="hours-card" data-days="0,6">
-                <h3>Samstag &amp; Sonntag</h3>
-                <p class="hours-time">11:00 – 21:00 Uhr</p>
-                <p class="hours-note">durchgehend geöffnet</p>
-              </div>
-              <div class="hours-card hours-card--closed" data-days="1">
-                <h3>Montag</h3>
-                <p class="hours-time">Ruhetag</p>
-              </div>
-            </div>
-
-            <p class="hours-status" id="hoursStatus" aria-live="polite"></p>
-
+        <div class="hours-layout reveal">
+          <div class="hours-info">
             <ul class="contact-list">
               <li>
                 <span class="contact-icon" aria-hidden="true">📍</span>
@@ -282,10 +259,30 @@
               </li>
             </ul>
 
-            <a href="tel:071311244424" class="btn btn-primary">Jetzt anrufen</a>
+            <a href="tel:071311244424" class="btn btn-primary btn-small">Jetzt anrufen</a>
+
+            <div class="hours-table">
+              <div class="hours-row hours-row--closed" data-days="1">
+                <span class="hours-day">Montag</span>
+                <span class="hours-time">Ruhetag</span>
+              </div>
+              <div class="hours-row" data-days="2,3,4,5">
+                <span class="hours-day">Dienstag – Freitag</span>
+                <span class="hours-time">
+                  <span>11:00 – 14:30 Uhr</span>
+                  <span>17:00 – 21:00 Uhr</span>
+                </span>
+              </div>
+              <div class="hours-row" data-days="0,6">
+                <span class="hours-day">Samstag &amp; Sonntag</span>
+                <span class="hours-time">11:00 – 21:00 Uhr <em>(durchgehend)</em></span>
+              </div>
+            </div>
+
+            <p class="hours-status" id="hoursStatus" aria-live="polite"></p>
           </div>
 
-          <div class="hours-map reveal">
+          <div class="hours-map">
             <iframe
               src="https://www.google.com/maps?q=Paulinenstra%C3%9Fe+8,+74076+Heilbronn&output=embed"
               title="Standort von Atipchai Thai Food auf Google Maps"
@@ -307,22 +304,34 @@
         <span>Atipchai Thai Food</span>
       </div>
 
-      <!-- Social-Media-Platzhalter-Links: bitte durch die echten Profil-URLs ersetzen -->
-      <div class="footer-social">
-        <a href="#" class="social-icon" aria-label="Atipchai Thai Food auf Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="#" class="social-icon" aria-label="Atipchai Thai Food auf Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8.5h2.2V5.6h-2.2c-2.1 0-3.6 1.5-3.6 3.7v1.9H8.7v3h2.2V21h3.1v-6.8h2.3l.4-3h-2.7V9.6c0-.7.3-1.1 1.1-1.1z" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="#" class="social-icon" aria-label="Atipchai Thai Food auf Google">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="currentColor">G</text></svg>
-        </a>
-      </div>
-
       <div class="footer-contact">
         <p>Paulinenstraße 8, 74076 Heilbronn</p>
         <p><a href="tel:071311244424">07131 1244424</a></p>
+      </div>
+
+      <!-- Social-Media-Platzhalter-Links und -Handles: bitte durch die echten Profile ersetzen -->
+      <div class="footer-social-block">
+        <p class="footer-social-label">Folge uns auf Social Media</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Instagram">
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="social-handle">@atipchaithaifood</span>
+          </a>
+          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Facebook">
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8.5h2.2V5.6h-2.2c-2.1 0-3.6 1.5-3.6 3.7v1.9H8.7v3h2.2V21h3.1v-6.8h2.3l.4-3h-2.7V9.6c0-.7.3-1.1 1.1-1.1z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="social-handle">@atipchaithaifood</span>
+          </a>
+          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Google">
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="currentColor">G</text></svg>
+            </span>
+            <span class="social-handle">Bewertungen</span>
+          </a>
+        </div>
       </div>
 
       <p class="footer-copy">&copy; <span id="year"></span> Atipchai Thai Food. Alle Rechte vorbehalten.</p>

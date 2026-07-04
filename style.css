@@ -7,7 +7,7 @@
    4. Header & Navigation
    5. Hero
    6. Über uns
-   7. Bestseller-Karussell
+   7. Bestseller-Grid
    8. Öffnungszeiten & Anfahrt
    9. Footer
    10. Scroll-Reveal-Animationen
@@ -435,48 +435,19 @@ section[id] {
   font-weight: 700;
 }
 
-/* ---------- 7. Bestseller-Karussell ---------- */
+/* ---------- 7. Bestseller-Grid ---------- */
 .bestsellers {
-  padding-block: 110px 60px;
+  padding-block: 110px;
   background: var(--color-cream-alt);
-  overflow: hidden;
 }
 
-.carousel {
-  position: relative;
-  max-width: 100%;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 22px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 24px;
-  padding: 8px 24px 28px;
-  cursor: grab;
-  /* Scrollbar dezent gestalten statt komplett auszublenden (Zugänglichkeit) */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-green) transparent;
-}
-
-.carousel-track.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-}
-
-.carousel-track::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel-track::-webkit-scrollbar-thumb {
-  background: var(--color-green);
-  border-radius: 999px;
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
 }
 
 .dish-card {
-  flex: 0 0 clamp(230px, 26vw, 290px);
-  scroll-snap-align: start;
   background: #fff;
   border: 1px solid var(--color-gold);
   border-radius: var(--radius);
@@ -535,60 +506,17 @@ section[id] {
   font-size: 0.9rem;
 }
 
-.carousel-arrow {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--color-gold);
-  background: rgba(250, 245, 238, 0.9);
-  color: var(--color-green-dark);
-  font-size: 1.6rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 5;
-  transition: background var(--transition), color var(--transition), opacity var(--transition);
-}
-
-.carousel-arrow:hover {
-  background: var(--color-green);
-  color: var(--color-gold);
-}
-
-.carousel-arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-.carousel-arrow:disabled:hover {
-  background: rgba(250, 245, 238, 0.9);
-  color: var(--color-green-dark);
-}
-
-.carousel-arrow--prev {
-  left: -6px;
-}
-
-.carousel-arrow--next {
-  right: -6px;
-}
-
-.carousel-hint {
+.dish-grid-hint {
   text-align: center;
   font-size: 0.8rem;
   color: var(--color-text-light);
   opacity: 0.75;
-  padding-bottom: 20px;
+  margin-top: 36px;
 }
 
 /* ---------- 8. Öffnungszeiten & Anfahrt ---------- */
 .hours {
-  padding-block: 110px;
+  padding-block: 100px;
   background: var(--color-dark);
   color: var(--color-text-invert);
 }
@@ -597,76 +525,107 @@ section[id] {
   color: var(--color-gold);
 }
 
-.hours .section-title {
+.hours .section-title--compact {
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
   color: var(--color-text-invert);
+  margin-bottom: 10px;
+}
+
+.hours-tagline {
+  max-width: 480px;
+  margin: 0 auto 48px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-gold);
 }
 
 .hours-layout {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
 }
 
-.hours-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 28px;
+.hours-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.hours-card {
-  background: var(--color-green-dark);
-  color: var(--color-text-invert);
-  padding: 28px 20px;
-  border-radius: var(--radius);
-  text-align: center;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(232, 203, 171, 0.25);
-  transition: transform var(--transition);
+.btn-small {
+  align-self: flex-start;
+  padding: 10px 26px;
+  font-size: 0.85rem;
 }
 
-.hours-card:hover {
-  transform: translateY(-6px);
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
 }
 
-.hours-card h3 {
+.contact-list a:hover {
   color: var(--color-gold);
-  font-size: 1.05rem;
-  margin-bottom: 12px;
 }
 
-.hours-time {
-  font-size: 0.98rem;
-  font-weight: 400;
+.contact-icon {
+  font-size: 1.1rem;
 }
 
-.hours-note {
-  margin-top: 6px;
-  font-size: 0.82rem;
-  color: var(--color-cream-alt);
-  opacity: 0.8;
+/* Kompakte, tabellarische Öffnungszeiten: Tag links, Uhrzeit rechts */
+.hours-table {
+  border-top: 1px solid rgba(232, 203, 171, 0.2);
 }
 
-.hours-card--closed {
-  background: transparent;
-  border-style: dashed;
-  color: rgba(246, 236, 221, 0.65);
+.hours-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 10px;
+  border-bottom: 1px solid rgba(232, 203, 171, 0.2);
+  border-radius: 6px;
+  transition: background var(--transition);
 }
 
-.hours-card--closed h3 {
-  color: rgba(246, 236, 221, 0.65);
+.hours-row.is-today {
+  background: rgba(232, 203, 171, 0.1);
+  padding-inline: 10px;
+  margin-inline: -10px;
 }
 
-.hours-card.is-today {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 2px var(--color-gold), var(--shadow-soft);
+.hours-day {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-gold);
+}
+
+.hours-row .hours-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.hours-row .hours-time em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.hours-row--closed .hours-day,
+.hours-row--closed .hours-time {
+  color: rgba(246, 236, 221, 0.6);
 }
 
 .hours-status {
   font-weight: 500;
-  font-size: 1.05rem;
-  margin-bottom: 26px;
+  font-size: 0.95rem;
 }
 
 .hours-status.is-open {
@@ -677,30 +636,13 @@ section[id] {
   color: #e2a2a2;
 }
 
-.contact-list {
-  margin-bottom: 26px;
-}
-
-.contact-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 16px;
-  font-size: 1.02rem;
-}
-
-.contact-list a:hover {
-  color: var(--color-gold);
-}
-
-.contact-icon {
-  font-size: 1.25rem;
+.hours-map {
+  min-height: 320px;
 }
 
 .hours-map iframe {
   width: 100%;
   height: 100%;
-  min-height: 380px;
   border: 0;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -716,10 +658,10 @@ section[id] {
 
 .footer-inner {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 22px;
+  text-align: center;
 }
 
 .footer-brand {
@@ -736,9 +678,41 @@ section[id] {
   border-radius: 50%;
 }
 
+.footer-contact {
+  font-size: 0.9rem;
+}
+
+.footer-contact a:hover {
+  color: var(--color-gold);
+}
+
+/* Social-Media-Block: Hinweiszeile + Icons mit Handle-Platzhaltern */
+.footer-social-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
 .footer-social {
   display: flex;
-  gap: 14px;
+  justify-content: center;
+  gap: 28px;
+}
+
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-cream-alt);
+  transition: color var(--transition);
+}
+
+.social-link:hover {
+  color: var(--color-gold);
 }
 
 .social-icon {
@@ -761,27 +735,20 @@ section[id] {
   stroke-width: 1.6;
 }
 
-.social-icon:hover {
+.social-link:hover .social-icon {
   background: var(--color-gold);
   color: var(--color-green-dark);
   transform: translateY(-3px);
 }
 
-.footer-contact {
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.footer-contact a:hover {
-  color: var(--color-gold);
+.social-handle {
+  font-size: 0.78rem;
 }
 
 .footer-copy {
   font-size: 0.82rem;
   opacity: 0.75;
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 /* ---------- 10. Scroll-Reveal-Animationen ---------- */
@@ -812,6 +779,12 @@ section[id] {
 }
 
 /* ---------- 11. Responsive Anpassungen ---------- */
+@media (max-width: 1100px) {
+  .dish-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 960px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -827,10 +800,7 @@ section[id] {
 
   .hours-map {
     order: -1;
-  }
-
-  .hours-map iframe {
-    min-height: 320px;
+    min-height: 280px;
   }
 }
 
@@ -879,14 +849,20 @@ section[id] {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .hours-cards {
-    grid-template-columns: 1fr;
+  /* Bestseller: Ab Tablet-Breite als horizontal scrollbare Reihe statt Raster */
+  .dish-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 18px;
+    padding-bottom: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-green) transparent;
   }
 
-  .carousel-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.3rem;
+  .dish-grid .dish-card {
+    flex: 0 0 68vw;
+    scroll-snap-align: start;
   }
 }
 
@@ -896,12 +872,11 @@ section[id] {
     align-items: stretch;
   }
 
-  .footer-inner {
-    justify-content: center;
-    text-align: center;
+  .dish-grid .dish-card {
+    flex-basis: 80vw;
   }
 
-  .dish-card {
-    flex-basis: 78vw;
+  .hours-row .hours-time {
+    font-size: 0.8rem;
   }
 }

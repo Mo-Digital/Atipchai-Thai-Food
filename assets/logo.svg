@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Atipchai Thai Food Logo Platzhalter">
   <defs>
     <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8a1c2e"/>
-      <stop offset="100%" stop-color="#5c1220"/>
+      <stop offset="0%" stop-color="#2f4f3c"/>
+      <stop offset="100%" stop-color="#1f342a"/>
     </linearGradient>
   </defs>
-  <circle cx="100" cy="100" r="96" fill="url(#logoBg)" stroke="#c9a24b" stroke-width="4"/>
+  <circle cx="100" cy="100" r="96" fill="url(#logoBg)" stroke="#e8cbab" stroke-width="4"/>
   <!-- Stilisiertes Blatt als dezentes asiatisches Akzent-Motiv -->
-  <path d="M100 40 C130 60 140 100 100 160 C60 100 70 60 100 40 Z" fill="none" stroke="#c9a24b" stroke-width="3"/>
-  <line x1="100" y1="50" x2="100" y2="150" stroke="#c9a24b" stroke-width="2"/>
-  <text x="100" y="103" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#f4e9d8" font-weight="700">ATF</text>
-  <text x="100" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="2" fill="#c9a24b">THAI FOOD</text>
+  <path d="M100 40 C130 60 140 100 100 160 C60 100 70 60 100 40 Z" fill="none" stroke="#e8cbab" stroke-width="3"/>
+  <line x1="100" y1="50" x2="100" y2="150" stroke="#e8cbab" stroke-width="2"/>
+  <text x="100" y="103" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#e8cbab" font-weight="700">ATF</text>
+  <text x="100" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="2" fill="#e8cbab">THAI FOOD</text>
 </svg>

@@ -4,7 +4,7 @@
    1. Header-Hintergrund beim Scrollen
    2. Mobiles Navigationsmenü
    3. Sanftes Scroll-Reveal (IntersectionObserver)
-   4. Lightbox für die Bildergalerie
+   4. Bestseller-Karussell (Pfeile + Drag-to-Scroll)
    5. Live-Status "Geöffnet / Geschlossen" auf Basis der Öffnungszeiten
    6. Aktuelles Jahr im Footer
    ========================================================= */
@@ -60,36 +60,56 @@ document.addEventListener("DOMContentLoaded", () => {
     revealTargets.forEach((el) => el.classList.add("in-view"));
   }
 
-  /* ---------- 4. Lightbox für die Bildergalerie ---------- */
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxClose = document.getElementById("lightboxClose");
-  const galleryImages = document.querySelectorAll(".gallery-item img");
+  /* ---------- 4. Bestseller-Karussell ---------- */
+  const track = document.getElementById("carouselTrack");
+  const prevBtn = document.getElementById("carouselPrev");
+  const nextBtn = document.getElementById("carouselNext");
 
-  const openLightbox = (src, alt) => {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
-    lightbox.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-  };
+  if (track && prevBtn && nextBtn) {
+    // Scrollt um eine Kartenbreite (inkl. Abstand) je Klick
+    const scrollByCard = (direction) => {
+      const card = track.querySelector(".dish-card");
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const amount = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+      track.scrollBy({ left: direction * amount, behavior: "smooth" });
+    };
 
-  const closeLightbox = () => {
-    lightbox.classList.remove("is-open");
-    lightboxImg.src = "";
-    document.body.style.overflow = "";
-  };
+    prevBtn.addEventListener("click", () => scrollByCard(-1));
+    nextBtn.addEventListener("click", () => scrollByCard(1));
 
-  galleryImages.forEach((img) => {
-    img.addEventListener("click", () => openLightbox(img.currentSrc || img.src, img.alt));
-  });
+    // Pfeile am Anfang/Ende deaktivieren
+    const updateArrowState = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 4;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
+    };
+    updateArrowState();
+    track.addEventListener("scroll", updateArrowState, { passive: true });
+    window.addEventListener("resize", updateArrowState);
 
-  lightboxClose.addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) closeLightbox();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
-  });
+    // Drag-to-Scroll per Maus für Desktop-Nutzer (zusätzlich zum Touch-Wischen)
+    let isDragging = false;
+    let dragStartX = 0;
+    let scrollStartLeft = 0;
+
+    track.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      track.classList.add("is-dragging");
+      dragStartX = event.pageX;
+      scrollStartLeft = track.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDragging = false;
+      track.classList.remove("is-dragging");
+    });
+
+    window.addEventListener("mousemove", (event) => {
+      if (!isDragging) return;
+      event.preventDefault();
+      track.scrollLeft = scrollStartLeft - (event.pageX - dragStartX);
+    });
+  }
 
   /* ---------- 5. Live-Status "Geöffnet / Geschlossen" ---------- */
   const hoursStatusEl = document.getElementById("hoursStatus");

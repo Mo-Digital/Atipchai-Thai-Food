@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" width="900" height="1000" role="img" aria-label="Platzhalterbild Über uns">
-  <rect width="900" height="1000" fill="#5c1220"/>
-  <rect x="40" y="40" width="820" height="920" fill="none" stroke="#c9a24b" stroke-width="2"/>
-  <text x="450" y="490" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#c9a24b">Foto folgt</text>
-  <text x="450" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#f4e9d8">about.jpg</text>
+  <rect width="900" height="1000" fill="#2f4f3c"/>
+  <rect x="40" y="40" width="820" height="920" fill="none" stroke="#e8cbab" stroke-width="2"/>
+  <text x="450" y="490" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#e8cbab">Foto folgt</text>
+  <text x="450" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#f6ecdd">about.jpg</text>
 </svg>

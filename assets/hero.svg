@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Platzhalterbild Restaurant Ambiente">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b0d12"/>
+      <stop offset="55%" stop-color="#5c1220"/>
+      <stop offset="100%" stop-color="#1a0d05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#heroBg)"/>
+  <g opacity="0.15" stroke="#c9a24b" stroke-width="2" fill="none">
+    <circle cx="1300" cy="200" r="220"/>
+    <circle cx="200" cy="750" r="260"/>
+  </g>
+  <text x="800" y="460" text-anchor="middle" font-family="Georgia, serif" font-size="42" fill="#c9a24b" letter-spacing="2">HERO-BILD PLATZHALTER</text>
+  <text x="800" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#f4e9d8">Bitte hero.jpg im assets/-Ordner ergänzen</text>
+</svg>

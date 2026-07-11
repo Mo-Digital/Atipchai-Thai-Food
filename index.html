@@ -20,7 +20,7 @@
   <meta property="og:locale" content="de_DE">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
 
   <!-- Google Fonts: Playfair Display (Überschriften) & Prompt (Fließtext, unterstützt auch Thai-Schriftzeichen) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a href="#hero" class="brand">
-        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="brand-logo">
+        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg'" alt="Atipchai Thai Food Logo" class="brand-logo">
         <span class="brand-name">Atipchai <em>Thai Food</em></span>
       </a>
 
@@ -68,7 +68,7 @@
       </div>
 
       <div class="container hero-content reveal">
-        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="hero-logo">
+        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg'" alt="Atipchai Thai Food Logo" class="hero-logo">
         <h1>Atipchai <span>Thai Food</span></h1>
         <p class="hero-slogan">Authentische Thai-Küche mit Familientradition.</p>
         <div class="hero-actions">
@@ -119,8 +119,12 @@
           Von unseren Gästen geliebt
         </p>
         <h2 class="section-title center reveal">Unsere Bestseller</h2>
+      </div>
 
-        <div class="dish-grid reveal">
+      <div class="carousel reveal">
+        <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev" aria-label="Vorherige Gerichte anzeigen">‹</button>
+
+        <div class="dish-track" id="dishTrack">
           <article class="dish-card">
             <div class="dish-image">
               <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai" loading="lazy">
@@ -232,7 +236,11 @@
           </article>
         </div>
 
-        <p class="dish-grid-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
+        <button class="carousel-arrow carousel-arrow--next" id="carouselNext" aria-label="Weitere Gerichte anzeigen">›</button>
+      </div>
+
+      <div class="container">
+        <p class="carousel-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
       </div>
     </section>
 
@@ -300,7 +308,7 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="footer-logo">
+        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg'" alt="Atipchai Thai Food Logo" class="footer-logo">
         <span>Atipchai Thai Food</span>
       </div>
 

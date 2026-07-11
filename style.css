@@ -7,7 +7,7 @@
    4. Header & Navigation
    5. Hero
    6. Über uns
-   7. Bestseller-Grid
+   7. Bestseller-Karussell
    8. Öffnungszeiten & Anfahrt
    9. Footer
    10. Scroll-Reveal-Animationen
@@ -435,19 +435,42 @@ section[id] {
   font-weight: 700;
 }
 
-/* ---------- 7. Bestseller-Grid ---------- */
+/* ---------- 7. Bestseller-Karussell ---------- */
 .bestsellers {
   padding-block: 110px;
   background: var(--color-cream-alt);
 }
 
-.dish-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.carousel {
+  position: relative;
+}
+
+.dish-track {
+  display: flex;
   gap: 26px;
+  overflow-x: auto;
+  /* Kein CSS scroll-snap hier: es würde die kontinuierliche Autoplay-Bewegung
+     (per JS scrollLeft) bei jedem Frame zurück zum nächsten Snap-Punkt ziehen.
+     Die Pfeil-Buttons scrollen stattdessen präzise um eine Kartenbreite. */
+  scroll-padding-inline: 24px;
+  padding: 8px 24px 10px;
+  cursor: grab;
+  scroll-behavior: auto; /* Autoplay steuert scrollLeft selbst weich per rAF */
+  /* Scrollbar unsichtbar machen, Scroll-Funktion bleibt erhalten */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dish-track::-webkit-scrollbar {
+  display: none;
+}
+
+.dish-track:active {
+  cursor: grabbing;
 }
 
 .dish-card {
+  flex: 0 0 clamp(230px, 26vw, 290px);
   background: #fff;
   border: 1px solid var(--color-gold);
   border-radius: var(--radius);
@@ -506,12 +529,48 @@ section[id] {
   font-size: 0.9rem;
 }
 
-.dish-grid-hint {
+.carousel-hint {
   text-align: center;
   font-size: 0.8rem;
   color: var(--color-text-light);
   opacity: 0.75;
-  margin-top: 36px;
+  margin-top: 20px;
+}
+
+/* Dezente, halbtransparente Pfeil-Buttons im Farbschema */
+.carousel-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background: rgba(47, 79, 60, 0.55);
+  color: var(--color-gold);
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.7;
+  transition: opacity var(--transition), background var(--transition), color var(--transition);
+}
+
+.carousel-arrow:hover {
+  opacity: 1;
+  background: var(--color-green);
+  color: var(--color-gold);
+}
+
+.carousel-arrow--prev {
+  left: 10px;
+}
+
+.carousel-arrow--next {
+  right: 10px;
 }
 
 /* ---------- 8. Öffnungszeiten & Anfahrt ---------- */
@@ -779,12 +838,6 @@ section[id] {
 }
 
 /* ---------- 11. Responsive Anpassungen ---------- */
-@media (max-width: 1100px) {
-  .dish-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 960px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -849,20 +902,18 @@ section[id] {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* Bestseller: Ab Tablet-Breite als horizontal scrollbare Reihe statt Raster */
-  .dish-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+  .dish-track {
     gap: 18px;
-    padding-bottom: 14px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-green) transparent;
   }
 
-  .dish-grid .dish-card {
-    flex: 0 0 68vw;
-    scroll-snap-align: start;
+  .dish-card {
+    flex-basis: 68vw;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
   }
 }
 
@@ -872,7 +923,7 @@ section[id] {
     align-items: stretch;
   }
 
-  .dish-grid .dish-card {
+  .dish-card {
     flex-basis: 80vw;
   }
 

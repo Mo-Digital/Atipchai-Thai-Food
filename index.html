@@ -119,8 +119,12 @@
           Von unseren Gästen geliebt
         </p>
         <h2 class="section-title center reveal">Unsere Bestseller</h2>
+      </div>
 
-        <div class="dish-grid reveal">
+      <div class="carousel reveal">
+        <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev" aria-label="Vorherige Gerichte anzeigen">‹</button>
+
+        <div class="dish-track" id="dishTrack">
           <article class="dish-card">
             <div class="dish-image">
               <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai" loading="lazy">
@@ -232,7 +236,11 @@
           </article>
         </div>
 
-        <p class="dish-grid-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
+        <button class="carousel-arrow carousel-arrow--next" id="carouselNext" aria-label="Weitere Gerichte anzeigen">›</button>
+      </div>
+
+      <div class="container">
+        <p class="carousel-hint">Preise sind Platzhalter – bitte durch die tatsächliche Speisekarte ersetzen.</p>
       </div>
     </section>
 

@@ -6,7 +6,8 @@
    3. Sanftes Scroll-Reveal (IntersectionObserver)
    4. Bestseller-Karussell (Autoplay, Pfeile, Touch/Wheel-Steuerung)
    5. Live-Status "Geöffnet / Geschlossen" auf Basis der Öffnungszeiten
-   6. Aktuelles Jahr im Footer
+   6. Cookie-Consent-Banner (inkl. Google-Analytics-Freischaltung)
+   7. Aktuelles Jahr im Footer
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -184,45 +185,104 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------- 5. Live-Status "Geöffnet / Geschlossen" ---------- */
+  // Nur auf index.html vorhanden – auf Impressum/Datenschutz gibt es diesen Block nicht.
   const hoursStatusEl = document.getElementById("hoursStatus");
   const hoursRows = document.querySelectorAll(".hours-row");
 
-  // Öffnungszeiten als Minuten seit Mitternacht, je Wochentag (0 = Sonntag ... 6 = Samstag)
-  const openingHours = {
-    0: [[11 * 60, 21 * 60]], // Sonntag: durchgehend
-    1: [], // Montag: Ruhetag
-    2: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Dienstag
-    3: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Mittwoch
-    4: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Donnerstag
-    5: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Freitag
-    6: [[11 * 60, 21 * 60]], // Samstag: durchgehend
+  if (hoursStatusEl) {
+    // Öffnungszeiten als Minuten seit Mitternacht, je Wochentag (0 = Sonntag ... 6 = Samstag)
+    const openingHours = {
+      0: [[11 * 60, 21 * 60]], // Sonntag: durchgehend
+      1: [], // Montag: Ruhetag
+      2: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Dienstag
+      3: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Mittwoch
+      4: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Donnerstag
+      5: [[11 * 60, 14 * 60 + 30], [17 * 60, 21 * 60]], // Freitag
+      6: [[11 * 60, 21 * 60]], // Samstag: durchgehend
+    };
+
+    const updateOpenStatus = () => {
+      const now = new Date();
+      const day = now.getDay();
+      const minutesNow = now.getHours() * 60 + now.getMinutes();
+      const ranges = openingHours[day];
+
+      const isOpen = ranges.some(([start, end]) => minutesNow >= start && minutesNow < end);
+
+      hoursStatusEl.textContent = isOpen
+        ? "Aktuell geöffnet"
+        : "Aktuell geschlossen";
+      hoursStatusEl.classList.toggle("is-open", isOpen);
+      hoursStatusEl.classList.toggle("is-closed", !isOpen);
+
+      // Passende Öffnungszeiten-Zeile optisch hervorheben
+      hoursRows.forEach((row) => {
+        const days = (row.dataset.days || "").split(",").map(Number);
+        row.classList.toggle("is-today", days.includes(day));
+      });
+    };
+
+    updateOpenStatus();
+    // Status jede Minute neu prüfen, damit er auch bei offener Seite aktuell bleibt
+    setInterval(updateOpenStatus, 60 * 1000);
+  }
+
+  /* ---------- 6. Cookie-Consent-Banner (inkl. Google-Analytics-Freischaltung) ---------- */
+  // Banner ist auf allen Seiten eingebunden (index.html, impressum.html, datenschutz.html).
+  const cookieBanner = document.getElementById("cookieBanner");
+  const cookieAcceptBtn = document.getElementById("cookieAccept");
+  const cookieDeclineBtn = document.getElementById("cookieDecline");
+  const CONSENT_STORAGE_KEY = "atipchai-cookie-consent"; // Werte: "accepted" | "declined"
+
+  // TODO: Echte GA4-Mess-ID eintragen, sobald ein Google-Analytics-Konto eingerichtet ist.
+  const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+
+  const loadGoogleAnalytics = () => {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.includes("XXXXXXXXXX")) {
+      // Solange keine echte Mess-ID hinterlegt ist, wird bewusst nichts nachgeladen.
+      return;
+    }
+    const gaScript = document.createElement("script");
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    gaScript.async = true;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("consent", "update", { analytics_storage: "granted" });
+    gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
   };
 
-  const updateOpenStatus = () => {
-    const now = new Date();
-    const day = now.getDay();
-    const minutesNow = now.getHours() * 60 + now.getMinutes();
-    const ranges = openingHours[day];
+  if (cookieBanner) {
+    const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
 
-    const isOpen = ranges.some(([start, end]) => minutesNow >= start && minutesNow < end);
+    if (storedConsent === "accepted") {
+      loadGoogleAnalytics();
+    } else if (storedConsent !== "declined") {
+      // Noch keine Entscheidung gespeichert: Banner einblenden
+      cookieBanner.hidden = false;
+    }
 
-    hoursStatusEl.textContent = isOpen
-      ? "Aktuell geöffnet"
-      : "Aktuell geschlossen";
-    hoursStatusEl.classList.toggle("is-open", isOpen);
-    hoursStatusEl.classList.toggle("is-closed", !isOpen);
+    if (cookieAcceptBtn) {
+      cookieAcceptBtn.addEventListener("click", () => {
+        localStorage.setItem(CONSENT_STORAGE_KEY, "accepted");
+        cookieBanner.hidden = true;
+        loadGoogleAnalytics();
+      });
+    }
 
-    // Passende Öffnungszeiten-Zeile optisch hervorheben
-    hoursRows.forEach((row) => {
-      const days = (row.dataset.days || "").split(",").map(Number);
-      row.classList.toggle("is-today", days.includes(day));
-    });
-  };
+    if (cookieDeclineBtn) {
+      cookieDeclineBtn.addEventListener("click", () => {
+        localStorage.setItem(CONSENT_STORAGE_KEY, "declined");
+        cookieBanner.hidden = true;
+      });
+    }
+  }
 
-  updateOpenStatus();
-  // Status jede Minute neu prüfen, damit er auch bei offener Seite aktuell bleibt
-  setInterval(updateOpenStatus, 60 * 1000);
-
-  /* ---------- 6. Aktuelles Jahr im Footer ---------- */
-  document.getElementById("year").textContent = new Date().getFullYear();
+  /* ---------- 7. Aktuelles Jahr im Footer ---------- */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });

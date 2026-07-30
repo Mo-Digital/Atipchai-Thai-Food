@@ -50,7 +50,10 @@
           <li><a href="#hours">Öffnungszeiten &amp; Anfahrt</a></li>
           <li><a href="#contact">Kontakt</a></li>
         </ul>
-        <a href="tel:071311244424" class="btn btn-outline nav-call">📞 07131 1244424</a>
+        <div class="nav-ctas">
+          <a href="tel:071311244424" class="btn btn-outline nav-call">📞 07131 1244424</a>
+          <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-order">Jetzt bestellen</a>
+        </div>
       </nav>
 
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav">
@@ -72,7 +75,8 @@
         <h1>Atipchai <span>Thai Food</span></h1>
         <p class="hero-slogan">Authentische Thai-Küche mit Familientradition.</p>
         <div class="hero-actions">
-          <a href="tel:071311244424" class="btn btn-primary">Jetzt anrufen</a>
+          <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Jetzt bestellen</a>
+          <a href="tel:071311244424" class="btn btn-outline-gold">Jetzt anrufen</a>
           <a href="#bestsellers" class="btn btn-ghost">Bestseller entdecken</a>
         </div>
       </div>
@@ -126,7 +130,8 @@
 
         <div class="dish-track" id="dishTrack">
           <article class="dish-card">
-            <div class="dish-image">
+            <!-- Bildausschnitt pro Karte per CSS-Variable --focus-y individuell justierbar (0% = oben, 100% = unten) -->
+            <div class="dish-image" style="--focus-y: 52%;">
               <img src="assets/dish1.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Kuay Teow" loading="lazy">
             </div>
             <div class="dish-body">
@@ -136,7 +141,7 @@
           </article>
 
           <article class="dish-card">
-            <div class="dish-image">
+            <div class="dish-image" style="--focus-y: 68%;">
               <img src="assets/dish2.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Rind" loading="lazy">
             </div>
             <div class="dish-body">
@@ -146,7 +151,7 @@
           </article>
 
           <article class="dish-card">
-            <div class="dish-image">
+            <div class="dish-image" style="--focus-y: 48%;">
               <img src="assets/dish3.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Papaya Salat" loading="lazy">
             </div>
             <div class="dish-body">
@@ -156,7 +161,7 @@
           </article>
 
           <article class="dish-card">
-            <div class="dish-image">
+            <div class="dish-image" style="--focus-y: 50%;">
               <img src="assets/dish4.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Mango Sticky Rice" loading="lazy">
             </div>
             <div class="dish-body">
@@ -166,7 +171,7 @@
           </article>
 
           <article class="dish-card">
-            <div class="dish-image">
+            <div class="dish-image" style="--focus-y: 50%;">
               <img src="assets/dish5.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai" loading="lazy">
             </div>
             <div class="dish-body">
@@ -188,7 +193,10 @@
           Wann und wo Sie uns finden
         </p>
         <h2 class="section-title section-title--compact center reveal">Öffnungszeiten &amp; Anfahrt</h2>
-        <p class="hours-tagline center reveal">Urlaubsfeeling und Geschmack in Heilbronn – komm vorbei, du findest uns.</p>
+        <div class="hours-tagline reveal">
+          <p class="hours-tagline-main">Komm vorbei und hol dir dein Stück Urlaub</p>
+          <p class="hours-tagline-sub">oder bestell dir deinen Urlaubsgeschmack bequem nach Hause.</p>
+        </div>
 
         <div class="hours-layout reveal">
           <div class="hours-info">
@@ -203,7 +211,10 @@
               </li>
             </ul>
 
-            <a href="tel:071311244424" class="btn btn-primary btn-small">Jetzt anrufen</a>
+            <div class="hours-actions">
+              <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">Jetzt bestellen</a>
+              <a href="tel:071311244424" class="btn btn-outline-gold btn-small">Jetzt anrufen</a>
+            </div>
 
             <div class="hours-table">
               <div class="hours-row hours-row--closed" data-days="1">

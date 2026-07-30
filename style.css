@@ -127,10 +127,22 @@ section[id] {
 
 .section-title {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
-  margin-bottom: 48px;
+  margin-bottom: 20px;
 }
 
 .section-title.center {
+  text-align: center;
+}
+
+/* Kurzer, dezenter Einleitungssatz unter einer Section-Überschrift */
+.section-subtitle {
+  max-width: 520px;
+  margin: 0 auto 44px;
+  color: var(--color-text-light);
+  font-size: 1.02rem;
+}
+
+.section-subtitle.center {
   text-align: center;
 }
 
@@ -219,6 +231,13 @@ section[id] {
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
+  animation: logoFadeIn 0.6s ease;
+}
+
+/* Sanftes, hochwertig wirkendes Einblenden des Logos beim ersten Laden */
+@keyframes logoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .brand-name {
@@ -336,6 +355,7 @@ section[id] {
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 0 6px rgba(232, 203, 171, 0.25);
+  animation: logoFadeIn 0.6s ease;
 }
 
 .hero h1 {
@@ -412,6 +432,9 @@ section[id] {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  /* Vertikaler Fokus etwas oberhalb der Mitte: hält Gesicht UND das
+     präsentierte Gericht im sichtbaren Bildausschnitt (siehe Mobile-Anpassung). */
+  object-position: center 20%;
   border-radius: var(--radius);
   border: 1px solid var(--color-gold);
   box-shadow: var(--shadow-soft);
@@ -424,22 +447,11 @@ section[id] {
 
 .about-text p {
   color: var(--color-text-light);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.about-highlights li {
-  padding-left: 28px;
-  position: relative;
-  margin-bottom: 12px;
-  font-weight: 500;
-}
-
-.about-highlights li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--color-green);
-  font-weight: 700;
+.about-text p:last-child {
+  margin-bottom: 0;
 }
 
 /* ---------- 7. Bestseller-Karussell ---------- */
@@ -508,7 +520,7 @@ section[id] {
 }
 
 .dish-body {
-  padding: 18px 20px 22px;
+  padding: 18px 20px 20px;
 }
 
 .dish-body h3 {
@@ -520,28 +532,7 @@ section[id] {
 .dish-body p {
   font-size: 0.9rem;
   color: var(--color-text-light);
-  margin-bottom: 14px;
   min-height: 4.4em;
-}
-
-.dish-price {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--color-green);
-  background: var(--color-cream);
-  border: 1px solid var(--color-gold);
-  border-radius: 999px;
-  padding: 4px 14px;
-  font-size: 0.9rem;
-}
-
-.carousel-hint {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--color-text-light);
-  opacity: 0.75;
-  margin-top: 20px;
 }
 
 /* Dezente, halbtransparente Pfeil-Buttons im Farbschema */
@@ -599,7 +590,7 @@ section[id] {
 
 .hours-tagline {
   max-width: 480px;
-  margin: 0 auto 48px;
+  margin: 0 auto 52px;
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 1.05rem;
@@ -609,19 +600,26 @@ section[id] {
 .hours-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 32px;
   align-items: stretch;
 }
 
+/* Linke Spalte als eigenständige Karte, damit sie der Karte rechts (Google Maps)
+   visuell die Waage hält statt lose auf dem dunklen Hintergrund zu stehen. */
 .hours-info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  background: var(--color-green-dark);
+  border: 1px solid rgba(232, 203, 171, 0.18);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow-soft);
 }
 
 .btn-small {
   align-self: flex-start;
-  padding: 10px 26px;
+  padding: 12px 26px;
   font-size: 0.85rem;
 }
 
@@ -629,8 +627,11 @@ section[id] {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 10px;
   font-size: 0.92rem;
+}
+
+.contact-list li + li {
+  margin-top: 10px;
 }
 
 .contact-list a:hover {
@@ -743,6 +744,7 @@ section[id] {
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  animation: logoFadeIn 0.6s ease;
 }
 
 .footer-contact {
@@ -971,6 +973,11 @@ section[id] {
     transform: none;
     transition: none;
   }
+  .brand-logo,
+  .hero-logo,
+  .footer-logo {
+    animation: none;
+  }
 }
 
 /* ---------- 11. Responsive Anpassungen ---------- */
@@ -987,7 +994,10 @@ section[id] {
   }
 
   .about-image img {
-    aspect-ratio: 16 / 10;
+    /* Nahe am natürlichen Hochformat des Fotos, damit auf schmalen
+       Bildschirmen sowohl Gesicht als auch das Gericht sichtbar bleiben
+       (ein breiteres Seitenverhältnis würde hier zu viel wegschneiden). */
+    aspect-ratio: 3 / 4;
   }
 
   .hours-layout {
@@ -1093,8 +1103,8 @@ section[id] {
   }
 
   .carousel-arrow {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     font-size: 1.3rem;
   }
 
@@ -1106,7 +1116,13 @@ section[id] {
     right: 4px;
   }
 
-  /* Öffnungszeiten-Karten: mehr Zeilenabstand statt gequetschter Tabelle */
+  /* Öffnungszeiten-Karte: etwas kompakteres Padding, mehr Zeilenabstand
+     statt gequetschter Tabelle */
+  .hours-info {
+    padding: 24px;
+    gap: 20px;
+  }
+
   .hours-row {
     flex-wrap: wrap;
     gap: 4px;
@@ -1115,6 +1131,11 @@ section[id] {
   .hours-row .hours-time {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .social-icon {
+    width: 44px;
+    height: 44px;
   }
 
   /* Cookie-Banner: Text und Buttons untereinander */
@@ -1152,15 +1173,12 @@ section[id] {
     text-align: center;
   }
 
-  .about-highlights li {
-    font-size: 0.95rem;
-  }
-
   .dish-card {
     flex-basis: 82vw;
   }
 
   .hours-info {
+    padding: 20px;
     gap: 14px;
   }
 

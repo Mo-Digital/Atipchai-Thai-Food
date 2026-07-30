@@ -364,6 +364,14 @@ body.nav-open {
   gap: 30px;
 }
 
+/* "Speisekarte" soll nur im mobilen Hamburger-Menü erscheinen — auf dem
+   Desktop verlinkt stattdessen der Button unter der Bestseller-Sektion
+   dorthin. Standardmäßig (Desktop) ausgeblendet, in der Mobile-Media-Query
+   weiter unten wieder eingeblendet. */
+.nav-mobile-only {
+  display: none;
+}
+
 .main-nav a {
   color: var(--color-text-invert);
   font-size: 0.95rem;
@@ -673,6 +681,15 @@ body.nav-open {
 
 .carousel-arrow--next {
   right: 10px;
+}
+
+/* Eigenständiger CTA-Block unterhalb des Karussells: verlinkt zur
+   vollständigen Speisekarte, ausreichend Abstand nach oben (zum Karussell)
+   und über das Section-Padding von .bestsellers nach unten (zur nächsten
+   Section), damit der Button klar als eigenes Element wirkt. */
+.bestseller-cta {
+  margin-top: 56px;
+  text-align: center;
 }
 
 /* ---------- 8. Öffnungszeiten & Anfahrt ---------- */
@@ -1331,6 +1348,11 @@ body.nav-open {
     white-space: normal;
     display: inline-block;
     padding-block: 4px; /* größere Tippfläche */
+  }
+
+  /* Im mobilen Menü wieder einblenden (siehe Basis-Regel weiter oben) */
+  .nav-mobile-only {
+    display: list-item;
   }
 
   .nav-call {

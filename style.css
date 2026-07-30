@@ -588,12 +588,16 @@ section[id] {
   font-size: 1.15rem;
   margin-bottom: 8px;
   color: var(--color-green-dark);
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 .dish-body p {
   font-size: 0.9rem;
   color: var(--color-text-light);
   min-height: 4.4em;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 /* Dezente, halbtransparente Pfeil-Buttons im Farbschema */
@@ -650,24 +654,30 @@ section[id] {
 }
 
 .hours-tagline {
-  max-width: 460px;
-  margin: 0 auto 52px;
+  max-width: 520px;
+  margin: 0 auto 56px;
   text-align: center;
 }
 
+/* Zeile 1: dominante Haupt-Headline in der Serif-Schrift */
 .hours-tagline-main {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
-  color: var(--color-gold);
+  font-size: clamp(1.4rem, 2.8vw, 1.75rem);
   line-height: 1.3;
+  letter-spacing: 0.2px;
+  color: var(--color-gold);
 }
 
+/* Zeile 2: ruhige, elegante Unterzeile — kursiv und deutlich abgesetzt */
 .hours-tagline-sub {
-  margin-top: 8px;
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 0.95rem;
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.5;
   color: var(--color-cream-alt);
   opacity: 0.85;
 }
@@ -1153,20 +1163,23 @@ section[id] {
     padding-block: 72px;
   }
 
-  /* "Über uns"-Bild auf Mobile deutlich größer: läuft randlos über die
-     volle Bildschirmbreite, statt innerhalb des Container-Paddings zu bleiben. */
-  .about-image {
-    margin-inline: -24px;
-    width: calc(100% + 48px);
-  }
-
+  /* "Über uns"-Bild auf Mobile: sauber gerahmt statt randlos zugeschnitten —
+     dezenter Gold-Rahmen, abgerundete Ecken, Schatten, mittig mit Weißraum
+     zum Text. Etwas hochformatiger als auf dem Desktop, damit sowohl Gesicht
+     als auch das Gericht in Naams Händen gut sichtbar bleiben. */
   .about-image img {
-    border-radius: 0;
-    border: none;
+    aspect-ratio: 3 / 4;
+    border-width: 3px;
   }
 
   .section-title {
     margin-bottom: 32px;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    padding-inline: 8px;
+    margin-bottom: 36px;
   }
 
   .hours-tagline {

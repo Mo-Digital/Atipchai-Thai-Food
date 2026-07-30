@@ -215,17 +215,56 @@ section[id] {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  /* Höher als .cookie-banner (z-index 200): .site-header ist selbst ein
+     Stacking-Context (position: fixed + z-index), daher wird auch das
+     mobile Menü (.main-nav), das als Kind von .site-header per position:
+     fixed aus dem Fluss genommen wird, ausschließlich innerhalb DIESES
+     Contexts einsortiert — sein eigener z-index-Wert zählt also nur
+     relativ zu Geschwistern im Header, nicht global. Ohne diesen hohen
+     Wert würde der Cookie-Banner das geöffnete Menü überdecken. */
+  z-index: 300;
   padding-block: 18px;
   background: transparent;
-  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  transition: padding var(--transition);
+}
+
+/* Verhindert Hintergrund-Scroll, während das mobile Menü offen ist
+   (script.js setzt/entfernt diese Klasse am <body>). */
+body.nav-open {
+  overflow: hidden;
+}
+
+/* Der halbtransparente Blur-Hintergrund beim Scrollen sitzt bewusst auf
+   einem ::before-Pseudoelement statt direkt auf .site-header: ein
+   backdrop-filter (oder transform/filter/perspective) auf .site-header
+   selbst würde einen neuen Containing Block für ALLE fixed-positionierten
+   Nachfahren erzeugen — inklusive des mobilen Menüs (.main-nav, ebenfalls
+   position: fixed). Dadurch würde sich das geöffnete Menü nicht mehr am
+   Viewport, sondern an der wenige Pixel hohen Header-Leiste ausrichten und
+   nur noch als schmaler Streifen erscheinen, statt den Bildschirm zu
+   füllen — genau der gemeldete Bug, der nur nach dem Scrollen auftrat
+   (weil .is-scrolled erst dann greift). Das Pseudoelement ist kein
+   Vorfahre von .main-nav und beeinflusst dessen Containing Block daher
+   nicht.
+*/
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  transition: background var(--transition), backdrop-filter var(--transition);
+  pointer-events: none;
 }
 
 .site-header.is-scrolled {
-  background: rgba(31, 52, 42, 0.94);
-  backdrop-filter: blur(6px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   padding-block: 10px;
+}
+
+.site-header.is-scrolled::before {
+  background: rgba(31, 52, 42, 0.94);
+  backdrop-filter: blur(6px);
 }
 
 .header-inner {
@@ -1031,6 +1070,164 @@ section[id] {
   color: var(--color-text);
 }
 
+/* ---------- 9d. Speisekarte ---------- */
+.menu-content {
+  padding-block: 64px 80px;
+}
+
+.menu-container {
+  max-width: 860px;
+}
+
+/* Kategorien deutlich sichtbar getrennt, damit die Seite auf einen Blick
+   gegliedert wirkt statt als durchgehende Textwand. */
+.menu-category {
+  margin-bottom: 52px;
+}
+
+.menu-category:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Hauptkategorien (Vorspeisen, Suppen, Hauptgerichte): größer & prominenter.
+   Unterkategorien (Salate, Currys, Spezialitäten, Fisch, Nachtisch, Extras):
+   bewusst kleiner gesetzt — so entsteht eine klare, gestaffelte Hierarchie
+   statt eines gleichförmigen Blocks aus lauter gleich großen Überschriften. */
+.menu-category-title {
+  display: inline-block;
+  font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+  color: var(--color-green-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--color-gold);
+}
+
+.menu-category-title--sub {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  letter-spacing: 1.1px;
+  color: var(--color-green);
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(232, 203, 171, 0.6);
+  margin-bottom: 18px;
+}
+
+.menu-category-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-light);
+  margin: -6px 0 18px;
+  max-width: 560px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-block: 14px;
+  border-bottom: 1px dashed rgba(47, 79, 60, 0.18);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-number {
+  flex-shrink: 0;
+  min-width: 26px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-gold-deep);
+}
+
+.menu-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-item-name {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.menu-item-desc {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.menu-item-price {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-green-dark);
+  white-space: nowrap;
+}
+
+.menu-item--noNumber .menu-item-text {
+  padding-left: 40px;
+}
+
+/* Dezentes "Beliebt"-Abzeichen für die meistbestellten Gerichte */
+.menu-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-green-dark);
+  background: var(--color-gold);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* Gold-Outline-Button-Variante für helle Hintergründe (z.B. die
+   Speisekarten-Seite): .btn-outline-gold ist für dunkle Flächen (Hero,
+   Hours-Karte) gedacht und hätte auf hellem Creme-Hintergrund zu wenig
+   Kontrast — hier daher stattdessen ein Grün-Outline. */
+.btn-outline-green {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.btn-outline-green:hover {
+  background: var(--color-green);
+  color: var(--color-text-invert);
+}
+
+.menu-order-cta {
+  margin-top: 56px;
+  padding-top: 44px;
+  border-top: 1px solid rgba(47, 79, 60, 0.15);
+  text-align: center;
+}
+
+.menu-order-text {
+  margin-bottom: 22px;
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+}
+
+.menu-order-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 /* ---------- 10. Scroll-Reveal-Animationen ---------- */
 /* Inhalte sind standardmäßig sichtbar (ohne JavaScript / bei Crawlern).
    Erst die per script.js früh gesetzte Klasse "js" auf <html> aktiviert
@@ -1107,6 +1304,7 @@ section[id] {
     position: fixed;
     inset: 0 0 0 26%;
     top: 0;
+    z-index: 10;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -1116,6 +1314,7 @@ section[id] {
     transform: translateX(100%);
     transition: transform var(--transition);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .main-nav.is-open {
@@ -1142,6 +1341,13 @@ section[id] {
     display: flex;
     width: 44px;
     height: 44px;
+    /* .main-nav deckt als Overlay-Drawer (inset: 0 0 0 26%) auch den oberen,
+       rechten Bereich ab, in dem der Hamburger-Button selbst sitzt. Ohne
+       eigenen Stacking-Kontext + höheren z-index als .main-nav (10) würde
+       das geöffnete Menü den Button verdecken — er wäre dann nicht mehr
+       klickbar und das Menü ließe sich nicht mehr schließen. */
+    position: relative;
+    z-index: 20;
   }
 
   .nav-toggle.is-active span:nth-child(1) {
@@ -1240,6 +1446,38 @@ section[id] {
   .cookie-banner-inner {
     flex-direction: column;
     align-items: stretch;
+    text-align: center;
+  }
+
+  /* Speisekarte: Zeile umbricht, Preis rutscht rechtsbündig unter den Text
+     statt die Karte in die Breite zu quetschen; sauberer Einspaltenfluss. */
+  .menu-category {
+    margin-bottom: 40px;
+  }
+
+  .menu-item {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .menu-item-price {
+    flex: 0 0 calc(100% - 40px);
+    margin-left: 40px;
+    padding-left: 0;
+    text-align: right;
+  }
+
+  .menu-item--noNumber .menu-item-price {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  .menu-order-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-order-actions .btn {
     text-align: center;
   }
 

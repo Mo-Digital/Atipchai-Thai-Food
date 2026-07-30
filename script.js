@@ -14,29 +14,60 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- 1. Header-Hintergrund beim Scrollen ---------- */
   const header = document.getElementById("siteHeader");
 
+  // rAF-Throttle: der Scroll-Listener selbst bleibt leichtgewichtig
+  // (nur ein gespeicherter Wert), die eigentliche DOM-Änderung passiert
+  // höchstens einmal pro Frame — verhindert Layout-Thrashing/Jank beim
+  // schnellen Scrollen, ganz ohne IntersectionObserver-Overhead für
+  // ein simples Schwellenwert-Kriterium (scrollY > 40).
+  let scrollTicking = false;
+
   const updateHeaderState = () => {
     header.classList.toggle("is-scrolled", window.scrollY > 40);
+    scrollTicking = false;
   };
   updateHeaderState();
-  window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(updateHeaderState);
+        scrollTicking = true;
+      }
+    },
+    { passive: true }
+  );
 
   /* ---------- 2. Mobiles Navigationsmenü ---------- */
   const navToggle = document.getElementById("navToggle");
   const mainNav = document.getElementById("mainNav");
 
-  navToggle.addEventListener("click", () => {
-    const isOpen = mainNav.classList.toggle("is-open");
+  // Öffnet/schließt das Overlay-Menü und sperrt währenddessen den
+  // Hintergrund-Scroll (body.nav-open { overflow: hidden }), damit sich
+  // Seite und Menü nicht gleichzeitig durcheinander scrollen lassen.
+  const setNavOpen = (isOpen) => {
+    mainNav.classList.toggle("is-open", isOpen);
     navToggle.classList.toggle("is-active", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("nav-open", isOpen);
+  };
+
+  navToggle.addEventListener("click", () => {
+    setNavOpen(!mainNav.classList.contains("is-open"));
   });
 
   // Menü schließen, sobald ein Link angeklickt wird (mobile UX)
   mainNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      mainNav.classList.remove("is-open");
-      navToggle.classList.remove("is-active");
-      navToggle.setAttribute("aria-expanded", "false");
+      setNavOpen(false);
     });
+  });
+
+  // Menü per Escape-Taste schließen
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mainNav.classList.contains("is-open")) {
+      setNavOpen(false);
+    }
   });
 
   /* ---------- 3. Sanftes Scroll-Reveal ---------- */

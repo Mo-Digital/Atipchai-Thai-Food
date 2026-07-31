@@ -1285,9 +1285,10 @@ body.nav-open {
   margin: 0;
 }
 
-/* Klickbare Kopfzeile über die volle Breite (Accordion-Trigger). Der <h2>
-   drumherum sorgt weiterhin für korrekte Dokumentstruktur/Screenreader-
-   Gliederung, während der Button selbst die komplette Klickfläche stellt. */
+/* Grüner Button über die volle Breite (Klick-Trigger). Der <h2> drumherum
+   sorgt weiterhin für korrekte Dokumentstruktur/Screenreader-Gliederung,
+   während der Button selbst die komplette Klickfläche stellt — auch auf
+   Mobile gut antippbar. */
 .menu-allergens-toggle {
   display: flex;
   align-items: center;
@@ -1301,7 +1302,7 @@ body.nav-open {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.2rem;
-  color: var(--color-gold);
+  color: var(--color-text-invert);
   text-align: left;
   cursor: pointer;
   transition: background var(--transition), border-color var(--transition);
@@ -1331,27 +1332,20 @@ body.nav-open {
   transform: rotate(180deg);
 }
 
-/* Sanftes Auf-/Zuklappen per grid-template-rows-Trick: kein JS-Höhen-
-   Messen nötig, funktioniert mit beliebig langem Inhalt. visibility wird
-   zeitversetzt (erst nach der Transition beim Schließen) umgeschaltet,
-   damit der Link im Hinweis-Kasten im eingeklappten Zustand nicht per
-   Tab-Taste fokussierbar ist. */
+/* Auf-/Zuklappen per max-height-Transition — bewusst kein grid-template-
+   rows-Trick (die Fr-Unit-Animation für Grid-Rows ist in manchen Browsern
+   unzuverlässig/fehlerhaft). max-height mit großzügigem, festem Zielwert
+   ist eine alte, aber extrem robuste und überall unterstützte Technik.
+   Standardzustand ist geschlossen (keine .is-open-Klasse); script.js
+   togglet ausschließlich diese eine Klasse. */
 .menu-allergens-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  visibility: hidden;
-  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
 }
 
 .menu-allergens-panel.is-open {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  transition: grid-template-rows 0.35s ease, visibility 0s linear 0s;
-}
-
-.menu-allergens-panel-inner {
-  overflow: hidden;
-  min-height: 0;
+  max-height: 3000px;
 }
 
 .menu-allergens-intro {

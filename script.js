@@ -8,6 +8,7 @@
    5. Live-Status "Geöffnet / Geschlossen" auf Basis der Öffnungszeiten
    6. Cookie-Consent-Banner (inkl. Google-Analytics-Freischaltung)
    7. Aktuelles Jahr im Footer
+   8. Allergene-Accordion (Speisekarte)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -316,4 +317,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- 7. Aktuelles Jahr im Footer ---------- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- 8. Allergene-Accordion (Speisekarte) ---------- */
+  // Nur auf speisekarte.html vorhanden.
+  const allergensToggle = document.getElementById("allergensToggle");
+  const allergensPanel = document.getElementById("allergensPanel");
+
+  if (allergensToggle && allergensPanel) {
+    allergensToggle.addEventListener("click", () => {
+      const isOpen = allergensPanel.classList.toggle("is-open");
+      allergensToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
 });

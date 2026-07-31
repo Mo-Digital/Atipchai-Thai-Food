@@ -1282,12 +1282,80 @@ body.nav-open {
 }
 
 .menu-allergens-title {
+  margin: 0;
+}
+
+/* Klickbare Kopfzeile über die volle Breite (Accordion-Trigger). Der <h2>
+   drumherum sorgt weiterhin für korrekte Dokumentstruktur/Screenreader-
+   Gliederung, während der Button selbst die komplette Klickfläche stellt. */
+.menu-allergens-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 22px;
+  background: rgba(232, 203, 171, 0.14);
+  border: 1px solid rgba(47, 79, 60, 0.15);
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 1.2rem;
   color: var(--color-green-dark);
-  margin-bottom: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.menu-allergens-toggle:hover {
+  background: rgba(232, 203, 171, 0.26);
+}
+
+.menu-allergens-toggle[aria-expanded="true"] {
+  border-color: var(--color-gold-deep);
+}
+
+.icon-chevron {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--color-gold-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.35s ease;
+}
+
+.menu-allergens-toggle[aria-expanded="true"] .icon-chevron {
+  transform: rotate(180deg);
+}
+
+/* Sanftes Auf-/Zuklappen per grid-template-rows-Trick: kein JS-Höhen-
+   Messen nötig, funktioniert mit beliebig langem Inhalt. visibility wird
+   zeitversetzt (erst nach der Transition beim Schließen) umgeschaltet,
+   damit der Link im Hinweis-Kasten im eingeklappten Zustand nicht per
+   Tab-Taste fokussierbar ist. */
+.menu-allergens-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.menu-allergens-panel.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0s;
+}
+
+.menu-allergens-panel-inner {
+  overflow: hidden;
+  min-height: 0;
 }
 
 .menu-allergens-intro {
+  margin-top: 24px;
   max-width: 700px;
   font-size: 0.9rem;
   color: var(--color-text-light);
@@ -1397,6 +1465,10 @@ body.nav-open {
   .hero-logo,
   .footer-logo {
     animation: none;
+  }
+  .menu-allergens-panel,
+  .icon-chevron {
+    transition: none;
   }
 }
 

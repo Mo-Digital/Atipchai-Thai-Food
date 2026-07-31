@@ -301,62 +301,72 @@
           </div>
         </div>
 
-        <!-- ===== ALLERGENE & ZUSATZSTOFFE ===== -->
+        <!-- ===== ALLERGENE & ZUSATZSTOFFE (Accordion, standardmäßig eingeklappt) ===== -->
         <div class="menu-allergens reveal">
-          <h2 class="menu-allergens-title">Allergene &amp; Zusatzstoffe</h2>
-          <p class="menu-allergens-intro">
-            Gemäß der Lebensmittelinformationsverordnung (LMIV) sind wir verpflichtet, über
-            allergene Zutaten und bestimmte Zusatzstoffe in unseren Speisen zu informieren. Die
-            folgenden Kennzeichnungen (Buchstaben und Zahlen) findest du bei den jeweiligen
-            Gerichten auf Anfrage – sprich uns gerne jederzeit persönlich oder telefonisch an, wir
-            beraten dich gerne individuell zu Unverträglichkeiten und Allergien.
-          </p>
+          <h2 class="menu-allergens-title">
+            <button type="button" class="menu-allergens-toggle" id="allergensToggle" aria-expanded="false" aria-controls="allergensPanel">
+              <span>Allergene &amp; Zusatzstoffe</span>
+              <svg class="icon-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6l6 -6"/></svg>
+            </button>
+          </h2>
 
-          <div class="menu-allergen-tables">
-            <table class="menu-allergen-table">
-              <caption>Allergene</caption>
-              <tbody>
-                <tr><th scope="row">A</th><td>Glutenhaltiges Getreide</td></tr>
-                <tr><th scope="row">B</th><td>Krebstiere</td></tr>
-                <tr><th scope="row">C</th><td>Eier</td></tr>
-                <tr><th scope="row">D</th><td>Fisch</td></tr>
-                <tr><th scope="row">E</th><td>Erdnüsse</td></tr>
-                <tr><th scope="row">F</th><td>Sojabohnen</td></tr>
-                <tr><th scope="row">G</th><td>Milch/Laktose</td></tr>
-                <tr><th scope="row">H</th><td>Schalenfrüchte (Nüsse)</td></tr>
-                <tr><th scope="row">L</th><td>Sellerie</td></tr>
-                <tr><th scope="row">M</th><td>Senf</td></tr>
-                <tr><th scope="row">N</th><td>Sesamsamen</td></tr>
-                <tr><th scope="row">O</th><td>Schwefeldioxid und Sulfite</td></tr>
-                <tr><th scope="row">P</th><td>Lupinen</td></tr>
-                <tr><th scope="row">R</th><td>Weichtiere</td></tr>
-              </tbody>
-            </table>
+          <div class="menu-allergens-panel" id="allergensPanel" role="region" aria-labelledby="allergensToggle">
+            <div class="menu-allergens-panel-inner">
+              <p class="menu-allergens-intro">
+                Gemäß der Lebensmittelinformationsverordnung (LMIV) sind wir verpflichtet, über
+                allergene Zutaten und bestimmte Zusatzstoffe in unseren Speisen zu informieren. Die
+                folgenden Kennzeichnungen (Buchstaben und Zahlen) findest du bei den jeweiligen
+                Gerichten auf Anfrage – sprich uns gerne jederzeit persönlich oder telefonisch an,
+                wir beraten dich gerne individuell zu Unverträglichkeiten und Allergien.
+              </p>
 
-            <table class="menu-allergen-table">
-              <caption>Zusatzstoffe</caption>
-              <tbody>
-                <tr><th scope="row">1</th><td>mit Farbstoff</td></tr>
-                <tr><th scope="row">2</th><td>mit Konservierungsstoff</td></tr>
-                <tr><th scope="row">3</th><td>mit Antioxidationsmittel</td></tr>
-                <tr><th scope="row">4</th><td>mit Geschmacksverstärker</td></tr>
-                <tr><th scope="row">5</th><td>geschwefelt</td></tr>
-                <tr><th scope="row">6</th><td>geschwärzt</td></tr>
-                <tr><th scope="row">7</th><td>mit Phosphat</td></tr>
-                <tr><th scope="row">8</th><td>mit Süßungsmittel</td></tr>
-                <tr><th scope="row">9</th><td>enthält eine Phenylalaninquelle</td></tr>
-                <tr><th scope="row">10</th><td>koffeinhaltig</td></tr>
-                <tr><th scope="row">11</th><td>chininhaltig</td></tr>
-              </tbody>
-            </table>
+              <div class="menu-allergen-tables">
+                <table class="menu-allergen-table">
+                  <caption>Allergene</caption>
+                  <tbody>
+                    <tr><th scope="row">A</th><td>Glutenhaltiges Getreide</td></tr>
+                    <tr><th scope="row">B</th><td>Krebstiere</td></tr>
+                    <tr><th scope="row">C</th><td>Eier</td></tr>
+                    <tr><th scope="row">D</th><td>Fisch</td></tr>
+                    <tr><th scope="row">E</th><td>Erdnüsse</td></tr>
+                    <tr><th scope="row">F</th><td>Sojabohnen</td></tr>
+                    <tr><th scope="row">G</th><td>Milch/Laktose</td></tr>
+                    <tr><th scope="row">H</th><td>Schalenfrüchte (Nüsse)</td></tr>
+                    <tr><th scope="row">L</th><td>Sellerie</td></tr>
+                    <tr><th scope="row">M</th><td>Senf</td></tr>
+                    <tr><th scope="row">N</th><td>Sesamsamen</td></tr>
+                    <tr><th scope="row">O</th><td>Schwefeldioxid und Sulfite</td></tr>
+                    <tr><th scope="row">P</th><td>Lupinen</td></tr>
+                    <tr><th scope="row">R</th><td>Weichtiere</td></tr>
+                  </tbody>
+                </table>
+
+                <table class="menu-allergen-table">
+                  <caption>Zusatzstoffe</caption>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>mit Farbstoff</td></tr>
+                    <tr><th scope="row">2</th><td>mit Konservierungsstoff</td></tr>
+                    <tr><th scope="row">3</th><td>mit Antioxidationsmittel</td></tr>
+                    <tr><th scope="row">4</th><td>mit Geschmacksverstärker</td></tr>
+                    <tr><th scope="row">5</th><td>geschwefelt</td></tr>
+                    <tr><th scope="row">6</th><td>geschwärzt</td></tr>
+                    <tr><th scope="row">7</th><td>mit Phosphat</td></tr>
+                    <tr><th scope="row">8</th><td>mit Süßungsmittel</td></tr>
+                    <tr><th scope="row">9</th><td>enthält eine Phenylalaninquelle</td></tr>
+                    <tr><th scope="row">10</th><td>koffeinhaltig</td></tr>
+                    <tr><th scope="row">11</th><td>chininhaltig</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="menu-allergens-note">
+                <strong>Hinweis:</strong> Da sich Rezepturen und Zutaten ändern können, bitten wir
+                dich, uns bei bekannten Allergien oder Unverträglichkeiten vor der Bestellung direkt
+                anzusprechen – telefonisch unter <a href="tel:071311244424">07131 1244424</a> oder
+                persönlich vor Ort.
+              </p>
+            </div>
           </div>
-
-          <p class="menu-allergens-note">
-            <strong>Hinweis:</strong> Da sich Rezepturen und Zutaten ändern können, bitten wir
-            dich, uns bei bekannten Allergien oder Unverträglichkeiten vor der Bestellung direkt
-            anzusprechen – telefonisch unter <a href="tel:071311244424">07131 1244424</a> oder
-            persönlich vor Ort.
-          </p>
         </div>
 
       </div>

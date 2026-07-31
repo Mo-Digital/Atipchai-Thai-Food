@@ -685,11 +685,35 @@ body.nav-open {
 
 /* Eigenständiger CTA-Block unterhalb des Karussells: verlinkt zur
    vollständigen Speisekarte, ausreichend Abstand nach oben (zum Karussell)
-   und über das Section-Padding von .bestsellers nach unten (zur nächsten
-   Section), damit der Button klar als eigenes Element wirkt. */
+   und nach unten (zusätzlich zum ohnehin großzügigen Section-Padding von
+   .bestsellers), damit der Button klar als eigenes, prominentes Element
+   wirkt statt unterzugehen. */
 .bestseller-cta {
-  margin-top: 56px;
+  margin-top: 64px;
+  margin-bottom: 16px;
   text-align: center;
+}
+
+/* Größer & auffälliger als ein Standard-.btn, mit Icon — soll als klarer
+   nächster Schritt nach den Bestsellern hervorstechen. */
+.bestseller-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 19px 42px;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+.icon-menu-book {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ---------- 8. Öffnungszeiten & Anfahrt ---------- */
@@ -1243,6 +1267,37 @@ body.nav-open {
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+/* Dezenter, sachlicher Hinweisblock am Seitenende: die konkrete
+   Allergenkennzeichnung je Gericht fehlt noch und wird über den
+   deutlich als Platzhalter erkennbaren Kasten markiert (gestrichelter
+   Rahmen, leicht getönter Hintergrund, kursiver Text). */
+.menu-allergens {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(47, 79, 60, 0.15);
+}
+
+.menu-allergens-title {
+  font-size: 1.2rem;
+  color: var(--color-green-dark);
+  margin-bottom: 14px;
+}
+
+.menu-allergens p {
+  max-width: 640px;
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+}
+
+.menu-allergens-placeholder {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border: 1px dashed var(--color-gold-deep);
+  border-radius: 10px;
+  background: rgba(232, 203, 171, 0.14);
+  font-style: italic;
 }
 
 /* ---------- 10. Scroll-Reveal-Animationen ---------- */

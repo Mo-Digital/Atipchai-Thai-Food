@@ -1295,20 +1295,20 @@ body.nav-open {
   gap: 16px;
   width: 100%;
   padding: 18px 22px;
-  background: rgba(232, 203, 171, 0.14);
-  border: 1px solid rgba(47, 79, 60, 0.15);
+  background: var(--color-green-dark);
+  border: 1px solid var(--color-green-dark);
   border-radius: var(--radius);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.2rem;
-  color: var(--color-green-dark);
+  color: var(--color-gold);
   text-align: left;
   cursor: pointer;
   transition: background var(--transition), border-color var(--transition);
 }
 
 .menu-allergens-toggle:hover {
-  background: rgba(232, 203, 171, 0.26);
+  background: var(--color-green);
 }
 
 .menu-allergens-toggle[aria-expanded="true"] {
@@ -1320,7 +1320,7 @@ body.nav-open {
   height: 22px;
   flex-shrink: 0;
   fill: none;
-  stroke: var(--color-gold-deep);
+  stroke: var(--color-gold);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;

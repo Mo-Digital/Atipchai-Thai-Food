@@ -694,21 +694,24 @@ body.nav-open {
   text-align: center;
 }
 
-/* Größer & auffälliger als ein Standard-.btn, mit Icon — soll als klarer
-   nächster Schritt nach den Bestsellern hervorstechen. */
+/* Ganz normaler, kompakter Button (kein Kreis!) — Größe bewusst identisch
+   zu den anderen Buttons auf der Seite (.btn: padding 14px 32px), hier nur
+   minimal höheres Padding, damit er als eigenständiger CTA etwas mehr
+   Gewicht bekommt. Icon und Text stehen in EINER Zeile nebeneinander. */
 .bestseller-cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 19px 42px;
-  font-size: 1.08rem;
-  font-weight: 600;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  line-height: 1;
 }
 
 .icon-menu-book {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -1269,10 +1272,9 @@ body.nav-open {
   gap: 16px;
 }
 
-/* Dezenter, sachlicher Hinweisblock am Seitenende: die konkrete
-   Allergenkennzeichnung je Gericht fehlt noch und wird über den
-   deutlich als Platzhalter erkennbaren Kasten markiert (gestrichelter
-   Rahmen, leicht getönter Hintergrund, kursiver Text). */
+/* Sachlicher, klar strukturierter LMIV-Pflichtabschnitt am Seitenende:
+   ausreichend Abstand zu den Gerichten darüber (margin-top) und zum
+   Footer darunter (via .menu-content-Padding, siehe unten). */
 .menu-allergens {
   margin-top: 56px;
   padding-top: 40px;
@@ -1285,19 +1287,85 @@ body.nav-open {
   margin-bottom: 14px;
 }
 
-.menu-allergens p {
-  max-width: 640px;
-  font-size: 0.88rem;
+.menu-allergens-intro {
+  max-width: 700px;
+  font-size: 0.9rem;
   color: var(--color-text-light);
 }
 
-.menu-allergens-placeholder {
-  margin-top: 14px;
-  padding: 14px 18px;
-  border: 1px dashed var(--color-gold-deep);
+/* Zwei saubere Tabellen nebeneinander auf Desktop, untereinander auf
+   Mobile (Umschaltung in der 780px-Media-Query weiter unten). */
+.menu-allergen-tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 28px;
+}
+
+.menu-allergen-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.menu-allergen-table caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-green);
+  margin-bottom: 10px;
+}
+
+.menu-allergen-table tr {
+  border-bottom: 1px dashed rgba(47, 79, 60, 0.18);
+}
+
+.menu-allergen-table tr:last-child {
+  border-bottom: none;
+}
+
+.menu-allergen-table th,
+.menu-allergen-table td {
+  padding: 7px 0;
+  text-align: left;
+  font-size: 0.87rem;
+  font-weight: 400;
+}
+
+.menu-allergen-table th {
+  width: 34px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-gold-deep);
+}
+
+.menu-allergen-table td {
+  color: var(--color-text-light);
+}
+
+.menu-allergens-note {
+  margin-top: 32px;
+  padding: 16px 20px;
   border-radius: 10px;
   background: rgba(232, 203, 171, 0.14);
-  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+  max-width: 700px;
+}
+
+.menu-allergens-note strong {
+  color: var(--color-text);
+}
+
+.menu-allergens-note a {
+  color: var(--color-green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.menu-allergens-note a:hover {
+  color: var(--color-gold-deep);
 }
 
 /* ---------- 10. Scroll-Reveal-Animationen ---------- */
@@ -1556,6 +1624,13 @@ body.nav-open {
 
   .menu-order-actions .btn {
     text-align: center;
+  }
+
+  /* Die zwei Allergen-/Zusatzstoff-Tabellen stapeln sich auf Mobile
+     untereinander statt nebeneinander zu quetschen. */
+  .menu-allergen-tables {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .cookie-banner-actions {

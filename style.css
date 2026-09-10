@@ -102,6 +102,7 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -577,15 +578,31 @@ body.nav-open {
   padding-block: 120px;
 }
 
+/* Editorial statt gleichgewichtiger 2-Spalten-Website-Look: die Story
+   bekommt den Löwenanteil der Breite (flexible 1fr-Spalte), das Portrait
+   ist bewusst klein und fest gedeckelt (clamp, ca. 280-330px) — ein
+   unterstützendes Foto neben der Geschichte, kein gleichwertiger
+   Content-Block. Reihenfolge visuell getauscht (Text zuerst/links, Bild
+   rechts) über `order`, ohne die DOM-Reihenfolge zu verändern. */
 .about-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 64px;
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 21vw, 330px);
   align-items: center;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.about-image {
+  order: 2;
+}
+
+.about-text {
+  order: 1;
 }
 
 .about-image img {
   width: 100%;
+  max-width: clamp(280px, 21vw, 330px);
+  margin-inline: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   /* Vertikaler Fokus etwas oberhalb der Mitte: hält Gesicht UND das
@@ -595,14 +612,18 @@ body.nav-open {
   box-shadow: var(--shadow-soft);
 }
 
+.about-text .eyebrow {
+  margin-bottom: 14px;
+}
+
 .about-text h2 {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .about-text p {
   color: var(--color-text-light);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .about-text p:last-child {
@@ -613,6 +634,7 @@ body.nav-open {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  margin-top: 6px;
   font-weight: 600;
   color: var(--color-accent-deep);
   transition: color var(--transition);
@@ -1723,14 +1745,21 @@ input:focus-visible,
     gap: 40px;
   }
 
+  /* Bild bleibt oben, aber bewusst klein und zentriert statt volle
+     Container-Breite — Naams Foto begleitet die Geschichte, statt sie
+     als gleich große Bildfläche zu dominieren. */
   .about-image {
     order: -1;
+    display: flex;
+    justify-content: center;
   }
 
   .about-image img {
     /* Nahe am natürlichen Hochformat des Fotos, damit auf schmalen
        Bildschirmen sowohl Gesicht als auch das Gericht sichtbar bleiben
-       (ein breiteres Seitenverhältnis würde hier zu viel wegschneiden). */
+       (ein breiteres Seitenausschnitt würde hier zu viel wegschneiden). */
+    width: clamp(180px, 32vw, 240px);
+    max-width: 240px;
     aspect-ratio: 3 / 4;
   }
 
@@ -1826,15 +1855,6 @@ input:focus-visible,
   .bestsellers,
   .hours {
     padding-block: 72px;
-  }
-
-  /* "Über uns"-Bild auf Mobile: sauber gerahmt statt randlos zugeschnitten —
-     dezenter Gold-Rahmen, abgerundete Ecken, Schatten, mittig mit Weißraum
-     zum Text. Etwas hochformatiger als auf dem Desktop, damit sowohl Gesicht
-     als auch das Gericht in Naams Händen gut sichtbar bleiben. */
-  .about-image img {
-    aspect-ratio: 3 / 4;
-    border-width: 3px;
   }
 
   .section-title {

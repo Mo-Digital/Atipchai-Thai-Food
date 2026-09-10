@@ -16,27 +16,66 @@
 
 /* ---------- 1. Grundlagen & Variablen ---------- */
 :root {
-  /* Thailand-Farbschema: warmes Sandgold, sattes Naturgrün, Anthrazit */
-  --color-gold: #e8cbab;
-  --color-gold-deep: #cfab7c;
-  --color-green: #2f4f3c;
-  --color-green-dark: #1f342a;
-  --color-green-light: #4a6b55;
-  --color-dark: #1c1a17;
-  --color-cream: #faf5ee;
-  --color-cream-alt: #f3e9d9;
+  /* Premium-Farbschema 2026: sehr dunkles Grün als Markenanker, ein
+     wärmeres Sekundärgrün, Terracotta/Chili als einziger starker Akzent
+     (CTAs, Preise, kleine Highlights), warmes Off-White als Seitenfläche,
+     ein noch helleres Warmweiß für Karten, die sich vom Seitenhintergrund
+     abheben sollen. */
+  --color-green-deep: #10261f;
+  --color-green-secondary: #173c2f;
+  --color-accent: #d95b3f;
+  --color-accent-deep: #ae4932;
+  /* Aufgehellte Terracotta-Variante speziell für kleinen Text/Icons auf den
+     sehr dunklen Grün-Flächen (z.B. .hours-day) — reines --color-accent
+     liegt dort bei ca. 4.2:1 Kontrast, knapp unter WCAG AA (4.5:1) für
+     kleinen Text; diese hellere Version erreicht ca. 6:1. */
+  --color-accent-light: #e8836b;
+  --color-cream: #f7f3ea;
+  --color-card: #fffdf8;
+  /* Sehr helle, dezent salbeigrün getönte Fläche für alternierende
+     Sections auf hellem Grund (z.B. .bestsellers) — bewusst eigenständig
+     von --color-muted-invert (das ist gedämpfter TEXT auf dunklem Grün). */
+  --color-sage-tint: #eef1e7;
+  --color-muted-invert: #9fada2;
 
-  --color-text: #23201d;
-  --color-text-light: #5c554d;
-  --color-text-invert: #f6ecdd;
+  --color-text: #17201c;
+  --color-text-light: #6d746f;
+  --color-text-invert: #f7f3ea;
 
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Prompt", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "DM Serif Display", Georgia, serif;
+  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --container-width: 1180px;
-  --radius: 14px;
+  --radius: 18px;
   --transition: 0.35s ease;
-  --shadow-soft: 0 12px 30px rgba(28, 20, 10, 0.14);
+  --shadow-soft: 0 12px 30px rgba(16, 38, 31, 0.14);
+  --focus-ring: 0 0 0 3px var(--color-cream), 0 0 0 5px var(--color-accent);
+}
+
+/* Selbstgehostete Schriften: kein Google-Fonts-Request an Dritte vor
+   Cookie-Consent (Performance + Datenschutz), siehe assets/fonts/. */
+@font-face {
+  font-family: "DM Serif Display";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/dm-serif-display-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DM Serif Display";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/dm-serif-display-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/manrope-variable.woff2") format("woff2");
 }
 
 /* ---------- 2. Reset & Basistypografie ---------- */
@@ -78,7 +117,7 @@ ul {
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--color-green-dark);
+  color: var(--color-green-deep);
   line-height: 1.2;
 }
 
@@ -116,7 +155,7 @@ section[id] {
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.8rem;
-  color: var(--color-green);
+  color: var(--color-green-secondary);
   margin-bottom: 10px;
 }
 
@@ -164,13 +203,18 @@ section[id] {
 }
 
 .btn-primary {
-  background: var(--color-gold);
-  color: var(--color-green-dark);
+  /* accent-deep + heller Text statt accent + dunkler Text: reines
+     --color-accent liegt bei ca. 4.2:1 Kontrast zu dunklem UND hellem
+     Text (Terracotta ist ein Mittelton) — knapp unter WCAG AA (4.5:1)
+     für den wichtigsten CTA-Button der Seite. accent-deep + Cremeweiß
+     erreicht ca. 5:1. */
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert);
   box-shadow: var(--shadow-soft);
 }
 
 .btn-primary:hover {
-  background: var(--color-gold-deep);
+  background: #8f3a26;
 }
 
 .btn-ghost {
@@ -179,34 +223,40 @@ section[id] {
 }
 
 .btn-ghost:hover {
-  background: rgba(246, 236, 221, 0.12);
+  background: rgba(247, 243, 234, 0.12);
 }
 
+/* --color-accent-light statt --color-accent: reines Terracotta liegt als
+   Text auf den dunklen Grün-Flächen (Header, Cookie-Banner) bei nur ca.
+   4.2:1 Kontrast — knapp unter WCAG AA (4.5:1) für kleinen Text. Die
+   aufgehellte Variante erreicht ca. 6:1. */
 .btn-outline {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+  border-color: var(--color-accent-light);
+  color: var(--color-accent-light);
   padding: 10px 22px;
   font-size: 0.9rem;
 }
 
 .btn-outline:hover {
-  background: var(--color-gold);
-  color: var(--color-green-dark);
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert);
+  border-color: var(--color-accent-deep);
 }
 
-/* Gold umrandeter Button in voller Button-Größe (z.B. "Jetzt anrufen" neben
+/* Umrandeter Button in voller Button-Größe (z.B. "Jetzt anrufen" neben
    dem gefüllten "Jetzt bestellen"-Button) — gleiche Maße wie .btn-primary/.btn-ghost.
    Zusätzlich zum Rahmen ein dezent gefüllter Hintergrund, damit der Button auch vor
    hellen Bildbereichen im Hero-Foto klar als Button und nicht als freistehender Text wirkt. */
 .btn-outline-gold {
-  background: rgba(232, 203, 171, 0.14);
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+  background: rgba(217, 91, 63, 0.14);
+  border-color: var(--color-accent-light);
+  color: var(--color-accent-light);
 }
 
 .btn-outline-gold:hover {
-  background: var(--color-gold);
-  color: var(--color-green-dark);
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert);
+  border-color: var(--color-accent-deep);
 }
 
 /* ---------- 4. Header & Navigation ---------- */
@@ -263,7 +313,7 @@ body.nav-open {
 }
 
 .site-header.is-scrolled::before {
-  background: rgba(31, 52, 42, 0.94);
+  background: rgba(16, 38, 31, 0.94);
   backdrop-filter: blur(6px);
 }
 
@@ -335,7 +385,7 @@ body.nav-open {
 
 .brand-name em {
   font-style: normal;
-  color: var(--color-gold);
+  color: var(--color-accent);
 }
 
 .main-nav {
@@ -348,15 +398,15 @@ body.nav-open {
    Hintergrund statt reinem Outline, etwas kräftigere Schrift, sanftes
    Glühen beim Hover statt eines reinen Farbwechsels. */
 .nav-call {
-  background: rgba(232, 203, 171, 0.14);
+  background: rgba(217, 91, 63, 0.14);
   font-weight: 600;
   transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
 .nav-call:hover {
-  background: var(--color-gold);
-  color: var(--color-green-dark);
-  box-shadow: 0 0 0 5px rgba(232, 203, 171, 0.2);
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert);
+  box-shadow: 0 0 0 5px rgba(217, 91, 63, 0.2);
 }
 
 .main-nav ul {
@@ -388,12 +438,12 @@ body.nav-open {
   bottom: -6px;
   width: 0;
   height: 2px;
-  background: var(--color-gold);
+  background: var(--color-accent);
   transition: width var(--transition);
 }
 
 .main-nav ul a:hover {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .main-nav ul a:hover::after {
@@ -446,7 +496,7 @@ body.nav-open {
   position: absolute;
   inset: 0;
   /* Dunkles Grün-Overlay auf dem Hero-Foto, damit der helle Text lesbar bleibt */
-  background: linear-gradient(180deg, rgba(47, 79, 60, 0.55) 0%, rgba(47, 79, 60, 0.75) 55%, rgba(20, 29, 24, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(23, 60, 47, 0.55) 0%, rgba(23, 60, 47, 0.75) 55%, rgba(16, 38, 31, 0.88) 100%);
 }
 
 .hero-content {
@@ -462,7 +512,7 @@ body.nav-open {
 }
 
 .hero h1 span {
-  color: var(--color-gold);
+  color: var(--color-accent);
 }
 
 /* Slogan bewusst im Kontrast zur fetten, aufrechten Headline gesetzt:
@@ -477,7 +527,8 @@ body.nav-open {
   font-size: clamp(1.15rem, 2vw, 1.4rem);
   letter-spacing: 0.4px;
   line-height: 1.5;
-  color: var(--color-gold);
+  color: var(--color-text-invert);
+  opacity: 0.92;
 }
 
 .hero-actions {
@@ -498,7 +549,7 @@ body.nav-open {
   display: block;
   width: 22px;
   height: 36px;
-  border: 2px solid var(--color-gold);
+  border: 2px solid var(--color-accent);
   border-radius: 20px;
   position: relative;
 }
@@ -510,7 +561,7 @@ body.nav-open {
   left: 50%;
   width: 4px;
   height: 8px;
-  background: var(--color-gold);
+  background: var(--color-accent);
   border-radius: 4px;
   transform: translateX(-50%);
   animation: scrollDot 1.6s infinite;
@@ -541,7 +592,6 @@ body.nav-open {
      präsentierte Gericht im sichtbaren Bildausschnitt (siehe Mobile-Anpassung). */
   object-position: center 20%;
   border-radius: var(--radius);
-  border: 1px solid var(--color-gold);
   box-shadow: var(--shadow-soft);
 }
 
@@ -559,10 +609,23 @@ body.nav-open {
   margin-bottom: 0;
 }
 
+.about-menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  transition: color var(--transition);
+}
+
+.about-menu-link:hover {
+  color: var(--color-green-deep);
+}
+
 /* ---------- 7. Bestseller-Karussell ---------- */
 .bestsellers {
   padding-block: 110px;
-  background: var(--color-cream-alt);
+  background: var(--color-sage-tint);
 }
 
 .carousel {
@@ -595,8 +658,7 @@ body.nav-open {
 
 .dish-card {
   flex: 0 0 clamp(230px, 26vw, 290px);
-  background: #fff;
-  border: 1px solid var(--color-gold);
+  background: var(--color-card);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
@@ -605,7 +667,7 @@ body.nav-open {
 
 .dish-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 36px rgba(28, 20, 10, 0.2);
+  box-shadow: 0 18px 36px rgba(16, 38, 31, 0.2);
 }
 
 .dish-image {
@@ -634,7 +696,7 @@ body.nav-open {
 .dish-body h3 {
   font-size: 1.15rem;
   margin-bottom: 8px;
-  color: var(--color-green-dark);
+  color: var(--color-green-deep);
   overflow-wrap: break-word;
   hyphens: none;
 }
@@ -647,6 +709,14 @@ body.nav-open {
   hyphens: none;
 }
 
+.dish-body .dish-price {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-accent-deep);
+  min-height: 0;
+}
+
 /* Dezente, halbtransparente Pfeil-Buttons im Farbschema */
 .carousel-arrow {
   position: absolute;
@@ -655,9 +725,9 @@ body.nav-open {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
-  background: rgba(47, 79, 60, 0.55);
-  color: var(--color-gold);
+  border: 1px solid var(--color-accent);
+  background: rgba(23, 60, 47, 0.55);
+  color: var(--color-accent);
   font-size: 1.6rem;
   line-height: 1;
   display: flex;
@@ -671,8 +741,8 @@ body.nav-open {
 
 .carousel-arrow:hover {
   opacity: 1;
-  background: var(--color-green);
-  color: var(--color-gold);
+  background: var(--color-green-secondary);
+  color: var(--color-accent);
 }
 
 .carousel-arrow--prev {
@@ -722,12 +792,12 @@ body.nav-open {
 /* ---------- 8. Öffnungszeiten & Anfahrt ---------- */
 .hours {
   padding-block: 100px;
-  background: var(--color-dark);
+  background: var(--color-green-deep);
   color: var(--color-text-invert);
 }
 
 .hours .eyebrow {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .hours .section-title--compact {
@@ -749,7 +819,7 @@ body.nav-open {
   font-size: clamp(1.4rem, 2.8vw, 1.75rem);
   line-height: 1.3;
   letter-spacing: 0.2px;
-  color: var(--color-gold);
+  color: var(--color-accent);
 }
 
 /* Zeile 2: ruhige, elegante Unterzeile — kursiv und deutlich abgesetzt */
@@ -761,7 +831,7 @@ body.nav-open {
   font-weight: 400;
   font-size: clamp(1rem, 1.6vw, 1.1rem);
   line-height: 1.5;
-  color: var(--color-cream-alt);
+  color: var(--color-muted-invert);
   opacity: 0.85;
 }
 
@@ -778,8 +848,8 @@ body.nav-open {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  background: var(--color-green-dark);
-  border: 1px solid rgba(232, 203, 171, 0.18);
+  background: var(--color-green-deep);
+  border: 1px solid rgba(217, 91, 63, 0.18);
   border-radius: var(--radius);
   padding: 32px;
   box-shadow: var(--shadow-soft);
@@ -808,7 +878,7 @@ body.nav-open {
 }
 
 .contact-list a:hover {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .contact-icon {
@@ -817,7 +887,7 @@ body.nav-open {
 
 /* Kompakte, tabellarische Öffnungszeiten: Tag links, Uhrzeit rechts */
 .hours-table {
-  border-top: 1px solid rgba(232, 203, 171, 0.2);
+  border-top: 1px solid rgba(217, 91, 63, 0.2);
 }
 
 .hours-row {
@@ -826,13 +896,13 @@ body.nav-open {
   justify-content: space-between;
   gap: 16px;
   padding-block: 10px;
-  border-bottom: 1px solid rgba(232, 203, 171, 0.2);
+  border-bottom: 1px solid rgba(217, 91, 63, 0.2);
   border-radius: 6px;
   transition: background var(--transition);
 }
 
 .hours-row.is-today {
-  background: rgba(232, 203, 171, 0.1);
+  background: rgba(217, 91, 63, 0.1);
   padding-inline: 10px;
   margin-inline: -10px;
 }
@@ -840,7 +910,7 @@ body.nav-open {
 .hours-day {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .hours-row .hours-time {
@@ -860,7 +930,7 @@ body.nav-open {
 
 .hours-row--closed .hours-day,
 .hours-row--closed .hours-time {
-  color: rgba(246, 236, 221, 0.6);
+  color: rgba(247, 243, 234, 0.6);
 }
 
 .hours-status {
@@ -874,6 +944,16 @@ body.nav-open {
 
 .hours-status.is-closed {
   color: #e2a2a2;
+}
+
+.hours-directions-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .hours-map {
@@ -890,10 +970,10 @@ body.nav-open {
 
 /* ---------- 9. Footer ---------- */
 .site-footer {
-  background: var(--color-dark);
-  color: var(--color-cream-alt);
+  background: var(--color-green-deep);
+  color: var(--color-muted-invert);
   padding-block: 48px 28px;
-  border-top: 3px solid var(--color-gold);
+  border-top: 3px solid var(--color-accent);
 }
 
 .footer-inner {
@@ -918,7 +998,7 @@ body.nav-open {
 }
 
 .footer-contact a:hover {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 /* Social-Media-Block: Hinweiszeile + Icons mit Handle-Platzhaltern */
@@ -927,7 +1007,7 @@ body.nav-open {
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-accent-light);
   margin-bottom: 14px;
 }
 
@@ -942,20 +1022,20 @@ body.nav-open {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: var(--color-cream-alt);
+  color: var(--color-muted-invert);
   transition: color var(--transition);
 }
 
 .social-link:hover {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .social-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
-  color: var(--color-gold);
+  border: 1px solid var(--color-accent-light);
+  color: var(--color-accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -971,8 +1051,8 @@ body.nav-open {
 }
 
 .social-link:hover .social-icon {
-  background: var(--color-gold);
-  color: var(--color-green-dark);
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert);
   transform: translateY(-3px);
 }
 
@@ -985,7 +1065,7 @@ body.nav-open {
 }
 
 .footer-legal a:hover {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
 }
 
 .footer-copy {
@@ -1001,8 +1081,8 @@ body.nav-open {
   right: 0;
   bottom: 0;
   z-index: 200;
-  background: var(--color-dark);
-  border-top: 2px solid var(--color-gold);
+  background: var(--color-green-deep);
+  border-top: 2px solid var(--color-accent);
   box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
 }
 
@@ -1022,14 +1102,14 @@ body.nav-open {
 }
 
 .cookie-banner-inner p {
-  color: var(--color-cream-alt);
+  color: var(--color-muted-invert);
   font-size: 0.88rem;
   max-width: 640px;
   margin: 0;
 }
 
 .cookie-banner-inner a {
-  color: var(--color-gold);
+  color: var(--color-accent-light);
   text-decoration: underline;
 }
 
@@ -1046,7 +1126,7 @@ body.nav-open {
 
 /* ---------- 9c. Rechtsseiten (Impressum & Datenschutz) ---------- */
 .legal-hero {
-  background: var(--color-green-dark);
+  background: var(--color-green-deep);
   color: var(--color-text-invert);
   padding: 150px 24px 56px;
   text-align: center;
@@ -1058,7 +1138,7 @@ body.nav-open {
 }
 
 .legal-hero p {
-  color: var(--color-cream-alt);
+  color: var(--color-muted-invert);
   margin-top: 10px;
 }
 
@@ -1074,7 +1154,7 @@ body.nav-open {
   font-size: 1.4rem;
   margin-top: 44px;
   margin-bottom: 14px;
-  color: var(--color-green-dark);
+  color: var(--color-green-deep);
 }
 
 .legal-content section:first-of-type h2 {
@@ -1085,7 +1165,7 @@ body.nav-open {
   font-size: 1.1rem;
   margin-top: 24px;
   margin-bottom: 10px;
-  color: var(--color-green);
+  color: var(--color-green-secondary);
 }
 
 .legal-content p,
@@ -1101,17 +1181,54 @@ body.nav-open {
 }
 
 .legal-content a {
-  color: var(--color-green);
+  color: var(--color-green-secondary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .legal-content a:hover {
-  color: var(--color-gold-deep);
+  color: var(--color-accent-deep);
 }
 
 .legal-content strong {
   color: var(--color-text);
+}
+
+/* ---------- 9c-2. 404-Seite ---------- */
+/* Dunkler Hintergrund, wie bei .legal-hero: der Header ist transparent und
+   erwartet einen dunklen Untergrund (sonst wäre der helle Markenname im
+   Header unlesbar, siehe .site-header/.brand-name). */
+.not-found {
+  padding: 170px 24px 120px;
+  text-align: center;
+  min-height: 60vh;
+  background: var(--color-green-deep);
+  color: var(--color-text-invert);
+}
+
+.not-found .eyebrow {
+  color: var(--color-accent-light);
+}
+
+.not-found h1 {
+  max-width: 640px;
+  margin: 14px auto 18px;
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  color: var(--color-text-invert);
+}
+
+.not-found p {
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--color-muted-invert);
+}
+
+.not-found-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
 }
 
 /* ---------- 9d. Speisekarte ---------- */
@@ -1140,20 +1257,20 @@ body.nav-open {
 .menu-category-title {
   display: inline-block;
   font-size: clamp(1.55rem, 2.8vw, 2.05rem);
-  color: var(--color-green-dark);
+  color: var(--color-green-deep);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   padding-bottom: 10px;
   margin-bottom: 24px;
-  border-bottom: 2px solid var(--color-gold);
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .menu-category-title--sub {
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   letter-spacing: 1.1px;
-  color: var(--color-green);
+  color: var(--color-green-secondary);
   border-bottom-width: 1px;
-  border-bottom-color: rgba(232, 203, 171, 0.6);
+  border-bottom-color: rgba(217, 91, 63, 0.6);
   margin-bottom: 18px;
 }
 
@@ -1175,7 +1292,7 @@ body.nav-open {
   align-items: baseline;
   gap: 14px;
   padding-block: 14px;
-  border-bottom: 1px dashed rgba(47, 79, 60, 0.18);
+  border-bottom: 1px dashed rgba(23, 60, 47, 0.18);
 }
 
 .menu-item:last-child {
@@ -1188,7 +1305,7 @@ body.nav-open {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
-  color: var(--color-gold-deep);
+  color: var(--color-accent-deep);
 }
 
 .menu-item-text {
@@ -1216,7 +1333,7 @@ body.nav-open {
   padding-left: 12px;
   font-weight: 600;
   font-size: 1rem;
-  color: var(--color-green-dark);
+  color: var(--color-green-deep);
   white-space: nowrap;
 }
 
@@ -1229,11 +1346,13 @@ body.nav-open {
   display: inline-block;
   font-family: var(--font-body);
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  color: var(--color-green-dark);
-  background: var(--color-gold);
+  /* accent-deep + heller Text statt accent + dunkler Text: bessere
+     Kontrastratio (~5:1 statt ~4.2:1) für den kleinen Fließtext im Badge. */
+  color: var(--color-text-invert);
+  background: var(--color-accent-deep);
   padding: 3px 10px;
   border-radius: 999px;
 }
@@ -1243,19 +1362,19 @@ body.nav-open {
    Hours-Karte) gedacht und hätte auf hellem Creme-Hintergrund zu wenig
    Kontrast — hier daher stattdessen ein Grün-Outline. */
 .btn-outline-green {
-  border-color: var(--color-green);
-  color: var(--color-green);
+  border-color: var(--color-green-secondary);
+  color: var(--color-green-secondary);
 }
 
 .btn-outline-green:hover {
-  background: var(--color-green);
+  background: var(--color-green-secondary);
   color: var(--color-text-invert);
 }
 
 .menu-order-cta {
   margin-top: 56px;
   padding-top: 44px;
-  border-top: 1px solid rgba(47, 79, 60, 0.15);
+  border-top: 1px solid rgba(23, 60, 47, 0.15);
   text-align: center;
 }
 
@@ -1278,7 +1397,7 @@ body.nav-open {
 .menu-allergens {
   margin-top: 56px;
   padding-top: 40px;
-  border-top: 1px solid rgba(47, 79, 60, 0.15);
+  border-top: 1px solid rgba(23, 60, 47, 0.15);
 }
 
 .menu-allergens-title {
@@ -1296,8 +1415,8 @@ body.nav-open {
   gap: 16px;
   width: 100%;
   padding: 18px 22px;
-  background: var(--color-green-dark);
-  border: 1px solid var(--color-green-dark);
+  background: var(--color-green-deep);
+  border: 1px solid var(--color-green-deep);
   border-radius: var(--radius);
   font-family: var(--font-heading);
   font-weight: 700;
@@ -1309,11 +1428,11 @@ body.nav-open {
 }
 
 .menu-allergens-toggle:hover {
-  background: var(--color-green);
+  background: var(--color-green-secondary);
 }
 
 .menu-allergens-toggle[aria-expanded="true"] {
-  border-color: var(--color-gold-deep);
+  border-color: var(--color-accent-deep);
 }
 
 .icon-chevron {
@@ -1321,7 +1440,7 @@ body.nav-open {
   height: 22px;
   flex-shrink: 0;
   fill: none;
-  stroke: var(--color-gold);
+  stroke: var(--color-accent);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1375,12 +1494,12 @@ body.nav-open {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
-  color: var(--color-green);
+  color: var(--color-green-secondary);
   margin-bottom: 10px;
 }
 
 .menu-allergen-table tr {
-  border-bottom: 1px dashed rgba(47, 79, 60, 0.18);
+  border-bottom: 1px dashed rgba(23, 60, 47, 0.18);
 }
 
 .menu-allergen-table tr:last-child {
@@ -1399,7 +1518,7 @@ body.nav-open {
   width: 34px;
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--color-gold-deep);
+  color: var(--color-accent-deep);
 }
 
 .menu-allergen-table td {
@@ -1410,7 +1529,7 @@ body.nav-open {
   margin-top: 32px;
   padding: 16px 20px;
   border-radius: 10px;
-  background: rgba(232, 203, 171, 0.14);
+  background: rgba(217, 91, 63, 0.14);
   font-size: 0.88rem;
   color: var(--color-text-light);
   max-width: 700px;
@@ -1421,13 +1540,142 @@ body.nav-open {
 }
 
 .menu-allergens-note a {
-  color: var(--color-green);
+  color: var(--color-green-secondary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .menu-allergens-note a:hover {
-  color: var(--color-gold-deep);
+  color: var(--color-accent-deep);
+}
+
+/* ---------- 9e. Skip-Link & Focus-States ---------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 999;
+  padding: 12px 22px;
+  background: var(--color-green-deep);
+  color: var(--color-text-invert);
+  border-radius: 0 0 10px 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Einheitlicher, gut sichtbarer Fokusring auf allen interaktiven Elementen
+   (Tastaturnavigation) — nur bei :focus-visible, damit Maus-/Touch-Klicks
+   keinen Ring auslösen. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 4px;
+}
+
+.nav-toggle:focus-visible,
+.carousel-arrow:focus-visible,
+.social-icon:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- 9f. Header-Bestellbutton (Desktop) ---------- */
+.nav-order-btn {
+  background: var(--color-accent-deep);
+  color: var(--color-text-invert) !important;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.nav-order-btn:hover {
+  background: #8f3a26;
+  transform: translateY(-1px);
+}
+
+/* ---------- 9g. Trust-Strip (direkt nach dem Hero) ---------- */
+.trust-strip {
+  background: var(--color-cream);
+  border-bottom: 1px solid rgba(16, 38, 31, 0.08);
+  padding-block: 28px;
+}
+
+.trust-strip .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px 48px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  white-space: nowrap;
+}
+
+.trust-item svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--color-accent-deep);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- 9h. "Hunger?"-Bestell-Section (vor dem Footer) ---------- */
+.order-section {
+  background: var(--color-green-deep);
+  color: var(--color-text-invert);
+  padding-block: 90px;
+  text-align: center;
+}
+
+.order-section .eyebrow {
+  justify-content: center;
+  color: var(--color-accent-light);
+}
+
+.order-section h2 {
+  color: var(--color-text-invert);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-bottom: 16px;
+}
+
+.order-section p {
+  max-width: 480px;
+  margin: 0 auto 36px;
+  color: var(--color-muted-invert);
+  font-size: 1.05rem;
+}
+
+.order-section .btn-primary {
+  padding: 20px 52px;
+  font-size: 1.05rem;
+}
+
+/* ---------- 9i. Mobile-Bottom-CTA-Bar ---------- */
+/* Nur auf schmalen Bildschirmen sichtbar (siehe Media-Query unten). Fest
+   am unteren Rand, mit Safe-Area-Inset für iPhones (Home-Indicator) und
+   höherem z-index als der Cookie-Banner, DAMIT sie nicht von ihm verdeckt
+   wird — script.js schiebt den Cookie-Banner stattdessen nach oben, sobald
+   die Leiste sichtbar ist (siehe .cookie-banner.has-mobile-bar). */
+.mobile-cta-bar {
+  display: none;
 }
 
 /* ---------- 10. Scroll-Reveal-Animationen ---------- */
@@ -1516,7 +1764,7 @@ body.nav-open {
     justify-content: center;
     gap: 40px;
     padding: 48px 32px;
-    background: rgba(31, 52, 42, 0.98);
+    background: rgba(16, 38, 31, 0.98);
     transform: translateX(100%);
     transition: transform var(--transition);
     overflow-y: auto;
@@ -1701,6 +1949,50 @@ body.nav-open {
 
   .cookie-banner-actions {
     justify-content: center;
+  }
+
+  /* Der Desktop-Bestellbutton im Header entfällt auf Mobile zugunsten der
+     Bottom-CTA-Bar (Platz im Header ist knapp neben Logo + Hamburger). */
+  .nav-order-btn {
+    display: none;
+  }
+
+  /* Fest fixierte Leiste am unteren Rand mit den zwei wichtigsten
+     Aktionen — Speisekarte und Bestellen sind der Hauptzweck der Seite
+     für Besucher, die von Instagram/TikTok/Google kommen. */
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 250;
+    gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: var(--color-card);
+    box-shadow: 0 -6px 20px rgba(16, 38, 31, 0.16);
+    transition: transform 0.3s ease;
+  }
+
+  /* Cookie-Banner ist noch unentschieden -> Bar vorübergehend ausblenden,
+     damit sich nicht zwei fixe Leisten am unteren Rand überlappen
+     (script.js setzt/entfernt diese Klasse am body). */
+  body.cookie-banner-open .mobile-cta-bar {
+    transform: translateY(100%);
+  }
+
+  .mobile-cta-bar .btn {
+    flex: 1;
+    text-align: center;
+    padding: 13px 12px;
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  /* Platz für die fixe Bar am Seitenende schaffen, damit der Footer nicht
+     verdeckt wird. */
+  body.has-mobile-bar .site-footer {
+    margin-bottom: 66px;
   }
 }
 

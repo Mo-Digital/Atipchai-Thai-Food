@@ -233,10 +233,37 @@ document.addEventListener("DOMContentLoaded", () => {
       6: [[11 * 60, 21 * 60]], // Samstag: durchgehend
     };
 
+    const WEEKDAY_INDEX = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+
+    // Öffnungszeiten gelten für Heilbronn (Europe/Berlin) — unabhängig von der
+    // Systemzeitzone des Besuchers. new Date().getDay()/getHours() würde
+    // stattdessen die LOKALE Zeitzone des Geräts verwenden und für Besucher
+    // aus anderen Zeitzonen einen falschen Status anzeigen.
+    const getBerlinDayAndMinutes = () => {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Europe/Berlin",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23",
+      }).formatToParts(new Date());
+
+      const map = {};
+      parts.forEach((part) => {
+        map[part.type] = part.value;
+      });
+
+      let hour = parseInt(map.hour, 10);
+      if (hour === 24) hour = 0; // ältere Engine-Eigenheit bei hourCycle h23 um Mitternacht
+
+      return {
+        day: WEEKDAY_INDEX[map.weekday],
+        minutesNow: hour * 60 + parseInt(map.minute, 10),
+      };
+    };
+
     const updateOpenStatus = () => {
-      const now = new Date();
-      const day = now.getDay();
-      const minutesNow = now.getHours() * 60 + now.getMinutes();
+      const { day, minutesNow } = getBerlinDayAndMinutes();
       const ranges = openingHours[day];
 
       const isOpen = ranges.some(([start, end]) => minutesNow >= start && minutesNow < end);
@@ -288,6 +315,14 @@ document.addEventListener("DOMContentLoaded", () => {
     gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
   };
 
+  // Solange der Cookie-Banner unentschieden am unteren Rand sichtbar ist,
+  // wird die mobile Bottom-CTA-Bar (falls vorhanden) per CSS ausgeblendet
+  // (siehe body.cookie-banner-open in style.css), damit sich nicht zwei
+  // fixe Leisten überlappen.
+  const setCookieBannerOpen = (isOpen) => {
+    document.body.classList.toggle("cookie-banner-open", isOpen);
+  };
+
   if (cookieBanner) {
     const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
 
@@ -296,12 +331,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (storedConsent !== "declined") {
       // Noch keine Entscheidung gespeichert: Banner einblenden
       cookieBanner.hidden = false;
+      setCookieBannerOpen(true);
     }
 
     if (cookieAcceptBtn) {
       cookieAcceptBtn.addEventListener("click", () => {
         localStorage.setItem(CONSENT_STORAGE_KEY, "accepted");
         cookieBanner.hidden = true;
+        setCookieBannerOpen(false);
         loadGoogleAnalytics();
       });
     }
@@ -310,6 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cookieDeclineBtn.addEventListener("click", () => {
         localStorage.setItem(CONSENT_STORAGE_KEY, "declined");
         cookieBanner.hidden = true;
+        setCookieBannerOpen(false);
       });
     }
   }

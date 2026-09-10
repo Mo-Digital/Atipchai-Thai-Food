@@ -7,40 +7,84 @@
   <!-- SEO Meta-Tags -->
   <title>Atipchai Thai Food – Authentisches Thai-Restaurant in Heilbronn</title>
   <meta name="description" content="Atipchai Thai Food in Heilbronn: authentische Thai-Küche mit Familientradition in der Paulinenstraße 8. Frisch zubereitet, herzliche Gastfreundschaft. Jetzt anrufen: 07131 1244424.">
-  <meta name="keywords" content="Thai Restaurant Heilbronn, Thailändisch Essen Heilbronn, Atipchai Thai Food, Thai Küche Heilbronn">
   <meta name="author" content="Atipchai Thai Food">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.atipchai-thai-food.de/">
+  <link rel="canonical" href="https://atipchaithaifood.de/">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="restaurant">
   <meta property="og:title" content="Atipchai Thai Food – Authentisches Thai-Restaurant in Heilbronn">
   <meta property="og:description" content="Authentische Thai-Küche mit Familientradition in Heilbronn. Paulinenstraße 8, 74076 Heilbronn. Tel: 07131 1244424.">
-  <meta property="og:image" content="assets/hero.jpeg">
+  <meta property="og:image" content="https://atipchaithaifood.de/assets/hero-2400.jpg">
+  <meta property="og:url" content="https://atipchaithaifood.de/">
   <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Atipchai Thai Food – Authentisches Thai-Restaurant in Heilbronn">
+  <meta name="twitter:description" content="Authentische Thai-Küche mit Familientradition in Heilbronn, Paulinenstraße 8.">
+  <meta name="twitter:image" content="https://atipchaithaifood.de/assets/hero-2400.jpg">
 
-  <!-- Favicon -->
+  <meta name="theme-color" content="#10261f">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
-
-  <!-- Google Fonts: Playfair Display (Überschriften) & Prompt (Fließtext, unterstützt auch Thai-Schriftzeichen) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- LCP-Bild: das Hero-Foto ist mit sehr hoher Wahrscheinlichkeit das
+       Largest Contentful Paint-Element, daher Preload der mobilen Variante
+       (kleinster gemeinsamer Nenner, wird auf Desktop einfach überschrieben
+       sobald das größere Sourceset lädt). -->
+  <link rel="preload" as="image" href="assets/hero-1280.jpg" fetchpriority="high">
 
   <!-- Setzt sofort eine Klasse, damit die Scroll-Reveal-Animation nur bei aktivem
        JavaScript greift; ohne JS bleibt der gesamte Inhalt normal sichtbar. -->
   <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Strukturierte Daten (Schema.org Restaurant) – ausschließlich reale,
+       im Projekt verifizierte Angaben (Adresse, Telefon, Öffnungszeiten).
+       Kein sameAs: es gibt aktuell keine echten Social-Media-Profile. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Atipchai Thai Food",
+    "url": "https://atipchaithaifood.de/",
+    "telephone": "+49 7131 1244424",
+    "servesCuisine": "Thai",
+    "priceRange": "€€",
+    "menu": "https://atipchaithaifood.de/speisekarte.html",
+    "image": "https://atipchaithaifood.de/assets/hero-2400.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 8",
+      "postalCode": "74076",
+      "addressLocality": "Heilbronn",
+      "addressCountry": "DE"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "11:00", "closes": "14:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "17:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "11:00", "closes": "21:00" }
+    ]
+  }
+  </script>
 </head>
-<body>
+<body class="has-mobile-bar">
+
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
 
   <!-- ===== HEADER / NAVIGATION ===== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a href="#hero" class="brand">
         <span class="logo-frame logo-frame--brand">
-          <img src="assets/logo.jpeg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="brand-logo">
+          <picture>
+            <source srcset="assets/logo-320.webp" type="image/webp">
+            <img src="assets/logo-320.jpg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="brand-logo">
+          </picture>
         </span>
         <span class="brand-name">Atipchai <em>Thai Food</em></span>
       </a>
@@ -57,6 +101,7 @@
           <li><a href="#contact">Kontakt</a></li>
         </ul>
         <a href="tel:071311244424" class="btn btn-outline nav-call">📞 07131 1244424</a>
+        <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn nav-order-btn">Jetzt bestellen</a>
       </nav>
 
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav">
@@ -65,23 +110,35 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
       <div class="hero-bg">
-        <img src="assets/hero.jpeg" onerror="this.onerror=null;this.src='assets/hero.svg'" alt="Ambiente von Atipchai Thai Food" class="hero-img">
+        <picture>
+          <source media="(min-width: 900px)" srcset="assets/hero-2400.webp" type="image/webp">
+          <source media="(min-width: 900px)" srcset="assets/hero-2400.jpg" type="image/jpeg">
+          <source srcset="assets/hero-1280.webp" type="image/webp">
+          <img src="assets/hero-1280.jpg" onerror="this.onerror=null;this.src='assets/hero.svg'" alt="Ambiente von Atipchai Thai Food" class="hero-img" fetchpriority="high">
+        </picture>
         <div class="hero-overlay"></div>
       </div>
 
       <div class="container hero-content reveal">
         <span class="logo-frame logo-frame--hero">
-          <img src="assets/logo.jpeg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="hero-logo">
+          <picture>
+            <source srcset="assets/logo-320.webp" type="image/webp">
+            <img src="assets/logo-320.jpg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="hero-logo">
+          </picture>
         </span>
-        <h1>Atipchai <span>Thai Food</span></h1>
-        <p class="hero-slogan">Authentische Thai-Küche<br>mit Familientradition</p>
+        <p class="eyebrow center" style="color: var(--color-accent-light); justify-content: center;">
+          <svg class="icon-leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c0-9 5-15 16-16-1 11-7 16-16 16z"/><path d="M5 19C10 14 14 10 19 5"/></svg>
+          Authentische Thai-Küche · Heilbronn
+        </p>
+        <h1>Ein Stück Thailand,<br>mitten in <span>Heilbronn</span>.</h1>
+        <p class="hero-slogan">Familienrezepte, frisch zubereitet – mit echter Gastfreundschaft in der Paulinenstraße.</p>
         <div class="hero-actions">
           <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Jetzt bestellen</a>
-          <a href="#bestsellers" class="btn btn-ghost">Bestseller entdecken</a>
+          <a href="#bestsellers" class="btn btn-ghost">Speisekarte entdecken</a>
         </div>
       </div>
 
@@ -90,11 +147,36 @@
       </a>
     </section>
 
+    <!-- ===== TRUST-STRIP ===== -->
+    <section class="trust-strip">
+      <div class="container">
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c0-9 5-15 16-16-1 11-7 16-16 16z"/><path d="M5 19C10 14 14 10 19 5"/></svg>
+          Familienrezepte aus Thailand
+        </span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          Täglich frisch zubereitet
+        </span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3C21 5 23.5 8.5 21.5 12.5 19 16.65 12 21 12 21z"/></svg>
+          Herzliche Gastfreundschaft
+        </span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Paulinenstraße 8, Heilbronn
+        </span>
+      </div>
+    </section>
+
     <!-- ===== ÜBER UNS ===== -->
     <section class="about" id="about">
       <div class="container about-grid">
         <div class="about-image reveal">
-          <img src="assets/about.jpeg" onerror="this.onerror=null;this.src='assets/about.svg'" alt="Naam von Atipchai Thai Food mit einem frisch zubereiteten Gericht" loading="lazy">
+          <picture>
+            <source srcset="assets/about.webp" type="image/webp">
+            <img src="assets/about.jpg" onerror="this.onerror=null;this.src='assets/about.svg'" alt="Naam von Atipchai Thai Food mit einem frisch zubereiteten Gericht" loading="lazy" width="900" height="1206">
+          </picture>
         </div>
         <div class="about-text reveal">
           <p class="eyebrow">
@@ -114,6 +196,7 @@
             Bei uns isst du nicht einfach nur Thai-Food – du bekommst ein kleines Stück
             Urlaubsgefühl, Familientradition und echte Gastfreundschaft auf den Teller.
           </p>
+          <p><a href="speisekarte.html" class="about-menu-link">Zu unserer Speisekarte →</a></p>
         </div>
       </div>
     </section>
@@ -136,51 +219,65 @@
           <article class="dish-card">
             <!-- Bildausschnitt pro Karte per CSS-Variable --focus-y individuell justierbar (0% = oben, 100% = unten) -->
             <div class="dish-image" style="--focus-y: 52%;">
-              <img src="assets/dish1.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Kuay Teow" loading="lazy">
+              <picture>
+                <source srcset="assets/dish1.webp" type="image/webp">
+                <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Hähnchenfleisch" loading="lazy" width="700" height="939">
+              </picture>
             </div>
             <div class="dish-body">
-              <h3>Kuay Teow</h3>
+              <h3>Nudelsuppe mit Hähnchenfleisch</h3>
               <p>Klare thailändische Nudelsuppe mit zartem Hähnchen, frischen Kräutern und einer würzig-aromatischen Brühe.</p>
+              <p class="dish-price">17,90&nbsp;€</p>
             </div>
           </article>
 
           <article class="dish-card">
             <div class="dish-image" style="--focus-y: 68%;">
-              <img src="assets/dish2.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Rind" loading="lazy">
+              <picture>
+                <source srcset="assets/dish2.webp" type="image/webp">
+                <img src="assets/dish2.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Rindfleisch" loading="lazy" width="700" height="939">
+              </picture>
             </div>
             <div class="dish-body">
-              <h3>Nudelsuppe mit Rind</h3>
+              <h3>Nudelsuppe mit Rindfleisch</h3>
               <p>Kräftige Rinderbrühe mit weichen Reisnudeln, zart geschmortem Rindfleisch und frischem Koriander.</p>
+              <p class="dish-price">20,30&nbsp;€</p>
             </div>
           </article>
 
           <article class="dish-card">
             <div class="dish-image" style="--focus-y: 48%;">
-              <img src="assets/dish3.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Papaya Salat" loading="lazy">
+              <picture>
+                <source srcset="assets/dish3.webp" type="image/webp">
+                <img src="assets/dish3.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Papaya Salat" loading="lazy" width="700" height="939">
+              </picture>
             </div>
             <div class="dish-body">
               <h3>Papaya Salat</h3>
               <p>Erfrischender Som Tam aus grüner Papaya, Limette, Chili und gerösteten Erdnüssen – fruchtig-scharf und knackig.</p>
+              <p class="dish-price">16,70&nbsp;€</p>
             </div>
           </article>
 
           <article class="dish-card">
             <div class="dish-image" style="--focus-y: 50%;">
-              <img src="assets/dish4.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Mango Sticky Rice" loading="lazy">
+              <img src="assets/dish4.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Mango mit Sticky Reis" loading="lazy">
             </div>
             <div class="dish-body">
-              <h3>Mango Sticky Rice</h3>
-              <p>Klebreis in cremiger Kokosmilch mit frischer Mango – unser beliebtestes Dessert zum süßen Abschluss.</p>
+              <h3>Mango mit Sticky Reis</h3>
+              <p>Klebreis in gesüßter Kokosmilch mit frischer Mango – unser beliebtestes Dessert zum süßen Abschluss.</p>
+              <p class="dish-price">9,50&nbsp;€</p>
             </div>
           </article>
 
           <article class="dish-card">
             <div class="dish-image" style="--focus-y: 50%;">
-              <img src="assets/dish5.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai" loading="lazy">
+              <img src="assets/dish5.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Gebratene Reisnudeln – Pad Thai" loading="lazy">
             </div>
             <div class="dish-body">
               <h3>Pad Thai</h3>
-              <p>Gebratene Reisnudeln mit Ei, Tofu, frischem Gemüse und gerösteten Erdnüssen – Thailands berühmtestes Gericht.</p>
+              <p>Gebratene Reisnudeln mit Ei, Sojasprossen, Erdnüssen und Tamarindensoße – Thailands berühmtestes Gericht.</p>
+              <p class="dish-price">15,50&nbsp;€</p>
             </div>
           </article>
         </div>
@@ -252,6 +349,10 @@
             </div>
 
             <p class="hours-status" id="hoursStatus" aria-live="polite"></p>
+
+            <a href="https://www.google.com/maps?q=Paulinenstra%C3%9Fe+8,+74076+Heilbronn" target="_blank" rel="noopener noreferrer" class="hours-directions-link">
+              Route in Google Maps öffnen →
+            </a>
           </div>
 
           <div class="hours-map">
@@ -266,6 +367,16 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== HUNGER? (Bestell-CTA vor dem Footer) ===== -->
+    <section class="order-section">
+      <div class="container">
+        <p class="eyebrow">Lust auf mehr?</p>
+        <h2>Hunger?</h2>
+        <p>Bestell dir dein Lieblingsgericht direkt nach Hause – schnell und unkompliziert über Wolt.</p>
+        <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Jetzt bestellen</a>
+      </div>
+    </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
@@ -273,7 +384,10 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="logo-frame logo-frame--footer">
-          <img src="assets/logo.jpeg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="footer-logo">
+          <picture>
+            <source srcset="assets/logo-320.webp" type="image/webp">
+            <img src="assets/logo-320.jpg" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Atipchai Thai Food Logo" class="footer-logo">
+          </picture>
         </span>
         <span>Atipchai Thai Food</span>
       </div>
@@ -281,31 +395,6 @@
       <div class="footer-contact">
         <p>Paulinenstraße 8, 74076 Heilbronn</p>
         <p><a href="tel:071311244424">07131 1244424</a></p>
-      </div>
-
-      <!-- Social-Media-Platzhalter-Links und -Handles: bitte durch die echten Profile ersetzen -->
-      <div class="footer-social-block">
-        <p class="footer-social-label">Folge uns auf Social Media</p>
-        <div class="footer-social">
-          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Instagram">
-            <span class="social-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-            </span>
-            <span class="social-handle">@atipchaithaifood</span>
-          </a>
-          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Facebook">
-            <span class="social-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8.5h2.2V5.6h-2.2c-2.1 0-3.6 1.5-3.6 3.7v1.9H8.7v3h2.2V21h3.1v-6.8h2.3l.4-3h-2.7V9.6c0-.7.3-1.1 1.1-1.1z" fill="currentColor" stroke="none"/></svg>
-            </span>
-            <span class="social-handle">@atipchaithaifood</span>
-          </a>
-          <a href="#" class="social-link" aria-label="Atipchai Thai Food auf Google">
-            <span class="social-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="currentColor">G</text></svg>
-            </span>
-            <span class="social-handle">Bewertungen</span>
-          </a>
-        </div>
       </div>
 
       <p class="footer-legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
@@ -328,6 +417,12 @@
         <button type="button" class="btn btn-primary" id="cookieAccept">Akzeptieren</button>
       </div>
     </div>
+  </div>
+
+  <!-- ===== MOBILE BOTTOM-CTA-BAR ===== -->
+  <div class="mobile-cta-bar" id="mobileCtaBar">
+    <a href="speisekarte.html" class="btn btn-outline-green">Speisekarte</a>
+    <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Bestellen</a>
   </div>
 
   <script src="script.js"></script>

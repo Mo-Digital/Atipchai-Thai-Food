@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Nur indexierbare Seiten (robots: index, follow). Impressum und
+     Datenschutz sind bewusst noindex (rechtliche Pflichtseiten ohne
+     eigenen Suchmehrwert) und werden daher hier nicht aufgeführt -
+     ein Eintrag würde in der Google Search Console als "Übermittelte
+     URL enthält 'noindex'-Tag" gemeldet. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://atipchaithaifood.de/</loc>
@@ -9,15 +14,5 @@
     <loc>https://atipchaithaifood.de/speisekarte.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://atipchaithaifood.de/impressum.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://atipchaithaifood.de/datenschutz.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
   </url>
 </urlset>

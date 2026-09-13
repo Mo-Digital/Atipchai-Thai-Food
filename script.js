@@ -367,4 +367,37 @@ document.addEventListener("DOMContentLoaded", () => {
       allergensToggle.setAttribute("aria-expanded", String(isOpen));
     });
   }
+
+  /* ---------- 9. Kategorie-Navigation Scroll-Spy (Speisekarte) ---------- */
+  // Nur auf speisekarte.html vorhanden. Hebt den Nav-Link der Kategorie
+  // hervor, die sich gerade im sichtbaren Bereich befindet, und scrollt ihn
+  // bei Bedarf in der horizontal scrollbaren Leiste in den sichtbaren
+  // Ausschnitt (wichtig auf Mobile, wo nicht alle Links auf einmal passen).
+  const menuNav = document.getElementById("menuNav");
+  const menuSections = document.querySelectorAll(".menu-section[id]");
+
+  if (menuNav && menuSections.length && "IntersectionObserver" in window) {
+    const navLinks = Array.from(menuNav.querySelectorAll(".menu-nav-link"));
+    const navLinkById = new Map(navLinks.map((link) => [link.getAttribute("href").slice(1), link]));
+
+    const setActiveLink = (id) => {
+      const activeLink = navLinkById.get(id);
+      if (!activeLink) return;
+      navLinks.forEach((link) => link.classList.toggle("is-active", link === activeLink));
+      activeLink.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    };
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-140px 0px -70% 0px", threshold: 0 }
+    );
+
+    menuSections.forEach((section) => sectionObserver.observe(section));
+  }
 });

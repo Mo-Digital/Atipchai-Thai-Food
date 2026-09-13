@@ -65,253 +65,395 @@
 
   <main id="main">
     <!-- ===== SEITEN-HERO ===== -->
-    <section class="legal-hero menu-hero">
-      <h1>Unsere Speisekarte</h1>
-      <p>Authentische Thai-Küche – frisch zubereitet, mit Familientradition.</p>
+    <section class="menu-hero-v2">
+      <div class="container">
+        <p class="eyebrow center menu-hero-eyebrow">Unsere Speisekarte</p>
+        <h1 class="menu-hero-title">Authentische Thai-Küche mit Familientradition</h1>
+        <p class="menu-hero-quote">„Frische Zutaten. Kräftige Aromen. Traditionelle Rezepte.“</p>
+      </div>
     </section>
+
+    <!-- ===== KATEGORIE-NAVIGATION ===== -->
+    <nav class="menu-nav" id="menuNav" aria-label="Kategorien der Speisekarte">
+      <div class="menu-nav-track">
+        <a href="#vorspeisen" class="menu-nav-link">Vorspeisen</a>
+        <a href="#suppen" class="menu-nav-link">Suppen</a>
+        <a href="#salate" class="menu-nav-link">Salate</a>
+        <a href="#currys" class="menu-nav-link">Currys</a>
+        <a href="#hauptgerichte" class="menu-nav-link">Hauptgerichte</a>
+        <a href="#reis" class="menu-nav-link">Reis</a>
+        <a href="#nudeln" class="menu-nav-link">Nudeln</a>
+        <a href="#fisch" class="menu-nav-link">Fisch</a>
+        <a href="#dessert" class="menu-nav-link">Dessert</a>
+        <a href="#getraenke" class="menu-nav-link">Getränke</a>
+      </div>
+    </nav>
 
     <!-- ===== SPEISEKARTE ===== -->
     <section class="menu-content">
       <div class="container menu-container">
 
-        <div class="menu-category reveal">
-          <h2 class="menu-category-title">Vorspeisen</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">1.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Vegetarische Frühlingsrolle (10 Stück)</h3>
-                <p class="menu-item-desc">mit Gemüse und Süß-Sauer-Soße</p>
-              </div>
-              <span class="menu-item-price">8,30&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">2.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Hähnchen Satay</h3>
-                <p class="menu-item-desc">3 Spieße mariniertes Hähnchenfleisch mit Erdnusssoße</p>
-              </div>
-              <span class="menu-item-price">9,50&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">3.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Frittierte Teigtaschen (10 Stück)</h3>
-                <p class="menu-item-desc">mit Hähnchenfleisch und Süß-Sauer-Soße</p>
-              </div>
-              <span class="menu-item-price">8,30&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">4.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Hausgemachte Frühlingsrollen (5 Stück)</h3>
-                <p class="menu-item-desc">mit Hähnchenfleisch, Gemüse, Glasnudeln und Süß-Sauer-Soße</p>
-              </div>
-              <span class="menu-item-price">9,50&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Salate</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">12.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Scharfer Salat</h3>
-                <p class="menu-item-desc">mit einer Fleischsorte deiner Wahl</p>
-              </div>
-              <span class="menu-item-price">17,90&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">13.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Papaya Salat</h3>
-                <p class="menu-item-desc">mit Karotten, Tomaten, Bohnen, Limetten und Erdnüssen</p>
-              </div>
-              <span class="menu-item-price">16,70&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">14.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Glasnudelsalat mit Meeresfrüchten</h3>
-                <p class="menu-item-desc">mit Tintenfisch, Garnelen, Muscheln, Gemüse und Kräutern</p>
-              </div>
-              <span class="menu-item-price">21,50&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category reveal">
-          <h2 class="menu-category-title">Suppen</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">7.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Tom Yum Gung</h3>
-                <p class="menu-item-desc">sauer-scharfe Garnelensuppe mit Galgant, Zitronengras, Tomaten, Pilzen und Kräutern</p>
-              </div>
-              <span class="menu-item-price">10,70&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">8.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Hähnchen Kokos Suppe – Tom Ka Gai</h3>
-                <p class="menu-item-desc">milde Kokosmilchsuppe mit Hähnchenfleisch, Ingwer und Zitronengras</p>
-              </div>
-              <span class="menu-item-price">10,70&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">10.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Nudelsuppe mit Rindfleisch <span class="menu-badge">Beliebt</span></h3>
-                <p class="menu-item-desc">Reisnudeln mit geschmortem Rind, Fleischbällchen und Thai-Gewürzen</p>
-              </div>
-              <span class="menu-item-price">20,30&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">11.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Nudelsuppe mit Hähnchenfleisch</h3>
-                <p class="menu-item-desc">Reisnudeln mit Hähnchenfleisch und Thai-Gewürzen</p>
-              </div>
-              <span class="menu-item-price">17,90&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Currys</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">9.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Rotes Thai Curry <span class="menu-badge">Beliebt</span></h3>
-                <p class="menu-item-desc">mit Kokosmilch, Hähnchenfleisch, Paprika, Bohnen und Basilikum</p>
-              </div>
-              <span class="menu-item-price">17,90&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Spezialitäten</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">5.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Frittierte Garnelen (10 Stück)</h3>
-                <p class="menu-item-desc">mit Süß-Sauer-Soße</p>
-              </div>
-              <span class="menu-item-price">10,70&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">6.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Frittiertes Fleisch</h3>
-                <p class="menu-item-desc">luftgetrocknet mit Thai-Kräutern und Süß-Sauer-Soße</p>
-              </div>
-              <span class="menu-item-price">15,50&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category reveal">
-          <h2 class="menu-category-title">Hauptgerichte</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">15.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Gebratenes Basilikum – Pad Krapao <span class="menu-badge">Beliebt</span></h3>
-                <p class="menu-item-desc">mit Spiegelei, Chili, Knoblauch, Paprika und einer Fleischsorte deiner Wahl</p>
-              </div>
-              <span class="menu-item-price">17,90&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">16.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Basilikum mit Meeresfrüchten</h3>
-                <p class="menu-item-desc">mit Tintenfisch, Garnelen, Spiegelei, Thai-Basilikum und Chili</p>
-              </div>
-              <span class="menu-item-price">20,30&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">17.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Gebratener Reis – Khao Pad</h3>
-                <p class="menu-item-desc">mit einer Zutat deiner Wahl</p>
-              </div>
-              <span class="menu-item-price">13,10&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">18.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Gebratene Reisnudeln – Pad Thai <span class="menu-badge">Beliebt</span></h3>
-                <p class="menu-item-desc">mit Ei, Sojasprossen, Erdnüssen, Lauchzwiebeln, Tamarindensoße und einer Zutat deiner Wahl</p>
-              </div>
-              <span class="menu-item-price">15,50&nbsp;€</span>
-            </li>
-            <li class="menu-item">
-              <span class="menu-item-number">19.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Süß-sauer gebratenes Gemüse – Pad Priew Wan</h3>
-                <p class="menu-item-desc">mit Ananas, Tomaten, Paprika, Zwiebeln, Gurken und einer Zutat deiner Wahl</p>
-              </div>
-              <span class="menu-item-price">17,90&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Fisch</h2>
-          <p class="menu-category-note">Hinweis: alle Gerichte werden mit Reisnudeln, Salatblättern und Dip-Soßen zubereitet. Für Fisch bitte 1,5 Stunden Vorbereitungszeit einplanen.</p>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">20.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Gebratene Thai Makrele</h3>
-              </div>
-              <span class="menu-item-price">31,10&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Nachtisch</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <span class="menu-item-number">22.</span>
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Mango mit Sticky Reis <span class="menu-badge">Beliebt</span></h3>
-                <p class="menu-item-desc">mit Klebreis, Mango und gesüßter Kokosmilch</p>
-              </div>
-              <span class="menu-item-price">9,50&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu-category menu-category--sub reveal">
-          <h2 class="menu-category-title menu-category-title--sub">Extras</h2>
-          <ul class="menu-list">
-            <li class="menu-item menu-item--noNumber">
-              <div class="menu-item-text">
-                <h3 class="menu-item-name">Klebreis</h3>
-              </div>
-              <span class="menu-item-price">5,00&nbsp;€</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- ===== BESTELL-CTA AM ENDE DER SPEISEKARTE ===== -->
-        <div class="menu-order-cta reveal">
-          <p class="menu-order-text">Hunger bekommen? Bestell dir dein Lieblingsgericht direkt nach Hause oder ruf uns an.</p>
-          <div class="menu-order-actions">
-            <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Jetzt bestellen</a>
-            <a href="tel:071311244424" class="btn btn-outline-green">Jetzt anrufen</a>
+        <section class="menu-section reveal" id="vorspeisen">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Vorspeisen</h2>
           </div>
-        </div>
+          <div class="dish-grid">
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Vegetarische Frühlingsrollen</h3>
+                  <span class="dish-card-v2-price">6,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">6 Stück</p>
+                <p class="dish-card-v2-desc">Knusprig frittiert, gefüllt mit frischem Gemüse, serviert mit Süß-Sauer-Soße.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Hähnchen-Satay</h3>
+                  <span class="dish-card-v2-price">7,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">3 Stück</p>
+                <p class="dish-card-v2-desc">Marinierte Hähnchenspieße vom Grill mit hausgemachter Erdnusssoße.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Frittierte Teigtaschen</h3>
+                  <span class="dish-card-v2-price">6,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">6 Stück</p>
+                <p class="dish-card-v2-desc">Knusprige Teigtaschen mit Hähnchenfleisch gefüllt, mit Süß-Sauer-Soße.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Hausgemachte Frühlingsrollen</h3>
+                  <span class="dish-card-v2-price">7,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">3 Stück</p>
+                <p class="dish-card-v2-desc">Mit Hähnchenfleisch, Gemüse und Glasnudeln, hausgemacht und knusprig frittiert.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Frittierte Garnelen</h3>
+                  <span class="dish-card-v2-price">8,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">7 Stück</p>
+                <p class="dish-card-v2-desc">Knusprig frittierte Garnelen mit Süß-Sauer-Soße.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Frittiertes Rindfleisch</h3>
+                  <span class="dish-card-v2-price">12,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Luftgetrocknetes Rindfleisch mit Thai-Kräutern, knusprig frittiert.</p>
+              </div>
+            </article>
+          </div>
+        </section>
 
-        <!-- ===== ALLERGENE & ZUSATZSTOFFE (auf-/zuklappbar, standardmäßig eingeklappt) ===== -->
+        <section class="menu-section reveal" id="suppen">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Suppen</h2>
+          </div>
+          <div class="dish-grid">
+            <article class="dish-card-v2 dish-card-v2--featured dish-card-v2--noimage">
+              <div class="dish-card-v2-body">
+                <span class="dish-card-v2-badge dish-card-v2-badge--inline">★ Kundenliebling</span>
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Tom Yum Gung</h3>
+                  <span class="dish-card-v2-price">8,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">Sauer-scharfe Garnelensuppe</p>
+                <p class="dish-card-v2-desc">Mit Galgant, Zitronengras, Tomaten, Pilzen und frischen Kräutern – Thailands bekannteste Suppe, kräftig und aromatisch.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Hähnchen-Kokossuppe <span class="menu-badge">Neu</span></h3>
+                  <span class="dish-card-v2-price">8,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-sub">Tom Ka Gai</p>
+                <p class="dish-card-v2-desc">Milde Kokosmilchsuppe mit Hähnchenfleisch, Ingwer und Zitronengras.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="menu-subsection-head">
+            <h3 class="menu-subsection-title">Nudelsuppen</h3>
+          </div>
+          <div class="dish-grid">
+            <article class="dish-card-v2 dish-card-v2--photo">
+              <div class="dish-card-v2-image">
+                <picture>
+                  <source srcset="assets/dish2.webp" type="image/webp">
+                  <img src="assets/dish2.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Rindfleisch von Atipchai Thai Food in Heilbronn" loading="lazy" width="700" height="939">
+                </picture>
+              </div>
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Nudelsuppe mit Rindfleisch</h3>
+                  <span class="dish-card-v2-price">16,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Reisnudeln mit geschmortem Rind, Fleischbällchen und Thai-Gewürzen.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Nudelsuppe mit Hühnchenfleisch</h3>
+                  <span class="dish-card-v2-price">14,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Reisnudeln mit Hähnchenfleisch und Thai-Gewürzen.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-section reveal" id="salate">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Salate</h2>
+          </div>
+          <div class="dish-grid">
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Scharfer Entensalat</h3>
+                  <span class="dish-card-v2-price">16,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Pikanter Entensalat mit Limette, Chili, Röstreis und frischen Kräutern.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Scharfer Hähnchensalat</h3>
+                  <span class="dish-card-v2-price">14,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Pikanter Hähnchensalat mit Limette, Chili, Röstreis und frischen Kräutern.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-section reveal" id="currys">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Currys</h2>
+          </div>
+          <article class="dish-card-v2 dish-card-v2--hero dish-card-v2--noimage">
+            <div class="dish-card-v2-body">
+              <span class="dish-card-v2-badge dish-card-v2-badge--inline">★ Kundenliebling</span>
+              <div class="dish-card-v2-head">
+                <h3 class="dish-card-v2-name">Rotes Thai Curry</h3>
+                <span class="dish-card-v2-price">14,90&nbsp;€</span>
+              </div>
+              <p class="dish-card-v2-desc">Mit Kokosmilch, Hähnchenfleisch, Paprika, Bohnen und thailändischem Basilikum – mild-cremig mit angenehmer Schärfe.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-section reveal" id="hauptgerichte">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Hauptgerichte</h2>
+          </div>
+          <article class="dish-card-v2 dish-card-v2--hero dish-card-v2--noimage">
+            <div class="dish-card-v2-body">
+              <div class="dish-card-v2-head">
+                <h3 class="dish-card-v2-name">Süß-Sauer Gebratenes Gemüse</h3>
+                <span class="dish-card-v2-price">ab 14,90&nbsp;€</span>
+              </div>
+              <p class="dish-card-v2-sub">Pad Priew Wan</p>
+              <p class="dish-card-v2-desc">Mit Ananas, Tomaten, Paprika, Zwiebeln und Gurken in süß-saurer Soße – wähle deine Zutat.</p>
+              <ul class="dish-variants">
+                <li><span>Hühnchenfleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Schweinefleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Garnelen</span><span>15,90&nbsp;€</span></li>
+                <li><span>Rindfleisch</span><span>16,90&nbsp;€</span></li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-section reveal" id="reis">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Reis</h2>
+          </div>
+          <article class="dish-card-v2 dish-card-v2--hero dish-card-v2--noimage">
+            <div class="dish-card-v2-body">
+              <div class="dish-card-v2-head">
+                <h3 class="dish-card-v2-name">Gebratener Reis</h3>
+                <span class="dish-card-v2-price">ab 10,90&nbsp;€</span>
+              </div>
+              <p class="dish-card-v2-sub">Khao Pad</p>
+              <p class="dish-card-v2-desc">Klassisch gebratener Reis mit Ei, Zwiebeln und Frühlingslauch – wähle deine Zutat.</p>
+              <ul class="dish-variants">
+                <li><span>Vegetarisch</span><span>10,90&nbsp;€</span></li>
+                <li><span>Hühnchenfleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Schweinefleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Rindfleisch</span><span>16,90&nbsp;€</span></li>
+              </ul>
+              <p class="dish-card-v2-extra">+ Extraportion Reis 2,00&nbsp;€</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-section reveal" id="nudeln">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Nudeln</h2>
+          </div>
+          <article class="dish-card-v2 dish-card-v2--hero">
+            <div class="dish-card-v2-image">
+              <picture>
+                <source srcset="assets/dish1.webp" type="image/webp">
+                <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai – gebratene Reisnudeln mit Hähnchenfleisch, Erdnüssen und Limette von Atipchai Thai Food in Heilbronn" loading="lazy" width="700" height="939">
+              </picture>
+              <span class="dish-card-v2-badge">★ Kundenliebling</span>
+            </div>
+            <div class="dish-card-v2-body">
+              <div class="dish-card-v2-head">
+                <h3 class="dish-card-v2-name">Pad Thai</h3>
+                <span class="dish-card-v2-price">ab 12,90&nbsp;€</span>
+              </div>
+              <p class="dish-card-v2-sub">Gebratene Reisnudeln</p>
+              <p class="dish-card-v2-desc">Mit Ei, Sojasprossen, gerösteten Erdnüssen, Frühlingslauch und Tamarindensoße – Thailands berühmtestes Gericht. Wähle deine Zutat.</p>
+              <ul class="dish-variants">
+                <li><span>Tofu</span><span>12,90&nbsp;€</span></li>
+                <li><span>Hühnchenfleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Schweinefleisch</span><span>14,90&nbsp;€</span></li>
+                <li><span>Garnelen</span><span>15,90&nbsp;€</span></li>
+                <li><span>Ente</span><span>16,90&nbsp;€</span></li>
+                <li><span>Rindfleisch</span><span>16,90&nbsp;€</span></li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-section reveal" id="fisch">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Fisch</h2>
+            <p class="menu-section-note">Alle Fischgerichte werden mit Reisnudeln, Salatblättern und Dip-Soßen serviert. Bitte etwa 1,5 Stunden Vorbereitungszeit einplanen.</p>
+          </div>
+          <div class="dish-grid">
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Gebratene Makrele</h3>
+                  <span class="dish-card-v2-price">25,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Knusprig gebratene Thai-Makrele, ganz zubereitet.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Gebratener roter Tilapia</h3>
+                  <span class="dish-card-v2-price">32,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Ganzer roter Tilapia, knusprig frittiert, mit Chili-Limetten-Note.</p>
+              </div>
+            </article>
+            <article class="dish-card-v2 dish-card-v2--compact">
+              <div class="dish-card-v2-body">
+                <div class="dish-card-v2-head">
+                  <h3 class="dish-card-v2-name">Fischfrikadelle</h3>
+                  <span class="dish-card-v2-price">15,90&nbsp;€</span>
+                </div>
+                <p class="dish-card-v2-desc">Würzige Fischfrikadellen nach Thai-Art mit Süß-Sauer-Soße.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-section reveal" id="dessert">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Dessert</h2>
+          </div>
+          <article class="dish-card-v2 dish-card-v2--hero dish-card-v2--noimage">
+            <div class="dish-card-v2-body">
+              <span class="dish-card-v2-badge dish-card-v2-badge--inline">★ Kundenliebling</span>
+              <div class="dish-card-v2-head">
+                <h3 class="dish-card-v2-name">Mango Sticky Rice</h3>
+                <span class="dish-card-v2-price">7,90&nbsp;€</span>
+              </div>
+              <p class="dish-card-v2-desc">Klebreis in gesüßter Kokosmilch mit frischer Mango – unser beliebtestes Dessert zum süßen Abschluss.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-section menu-drinks reveal" id="getraenke">
+          <div class="menu-section-head">
+            <h2 class="menu-section-title">Getränke</h2>
+          </div>
+          <div class="menu-drinks-groups">
+            <div class="menu-drinks-group">
+              <h3 class="menu-drinks-group-title">Alkoholfrei</h3>
+              <ul class="menu-drinks-list">
+                <li><span>Coca-Cola</span><span>2,50&nbsp;€</span></li>
+                <li><span>Coca-Cola Zero</span><span>2,50&nbsp;€</span></li>
+                <li><span>Mezzo Mix</span><span>2,50&nbsp;€</span></li>
+                <li><span>Eistee</span><span>2,50&nbsp;€</span></li>
+                <li><span>Red Bull</span><span>3,00&nbsp;€</span></li>
+                <li><span>Orangensaft</span><span>2,50&nbsp;€</span></li>
+                <li><span>Multivitaminsaft</span><span>2,50&nbsp;€</span></li>
+                <li><span>Mineralwasser <em>(Still · Medium · Klassik)</em></span><span>je 1,50&nbsp;€</span></li>
+              </ul>
+            </div>
+            <div class="menu-drinks-group">
+              <h3 class="menu-drinks-group-title">Alkohol</h3>
+              <ul class="menu-drinks-list">
+                <li><span>Leo Thai Lagerbier</span><span>3,50&nbsp;€</span></li>
+                <li><span>Singha Thai Beer</span><span>3,50&nbsp;€</span></li>
+                <li><span>Chang Thai Bier</span><span>3,50&nbsp;€</span></li>
+                <li><span>Beck's</span><span>3,50&nbsp;€</span></li>
+                <li><span>Franziskaner Hefe-Weizen</span><span>4,00&nbsp;€</span></li>
+                <li><span>Franziskaner Kristall</span><span>4,00&nbsp;€</span></li>
+                <li><span>Rotwein</span><span>4,00&nbsp;€</span></li>
+                <li><span>Weißwein</span><span>4,00&nbsp;€</span></li>
+                <li><span>Jacky Cola</span><span>4,00&nbsp;€</span></li>
+                <li><span>Thai Kräuterschnaps</span><span>3,00&nbsp;€</span></li>
+                <li><span>Thai Whisky</span><span>3,00&nbsp;€</span></li>
+              </ul>
+            </div>
+          </div>
+          <p class="menu-drinks-note">Bei Mitnahme zzgl. 0,25&nbsp;€ Pfand.</p>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ===== BESTELL-CTA: WOLT ===== -->
+    <section class="menu-cta menu-cta-wolt reveal">
+      <div class="container menu-cta-inner">
+        <p class="eyebrow center menu-cta-eyebrow">Hunger bekommen?</p>
+        <h2 class="menu-cta-title">Bestelle dein Lieblingsgericht direkt bei Atipchai.</h2>
+        <a href="https://wolt.com/de/deu/heilbronn/restaurant/atipchai-thai-food" target="_blank" rel="noopener noreferrer" class="btn btn-primary menu-cta-btn">Bei Wolt bestellen</a>
+      </div>
+    </section>
+
+    <!-- ===== BESUCHS-CTA: RESTAURANT ===== -->
+    <section class="menu-cta menu-cta-visit reveal">
+      <div class="container menu-cta-inner">
+        <h2 class="menu-cta-title menu-cta-title--dark">Oder besuche uns in Heilbronn</h2>
+        <p class="menu-cta-address">Atipchai Thai Food<br>Paulinenstraße 8, 74076 Heilbronn</p>
+        <div class="menu-cta-actions">
+          <a href="https://www.google.com/maps?q=Paulinenstra%C3%9Fe+8,+74076+Heilbronn" target="_blank" rel="noopener noreferrer" class="btn btn-outline-green">Route planen</a>
+          <a href="tel:071311244424" class="btn btn-primary">Anrufen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ALLERGENE & ZUSATZSTOFFE (auf-/zuklappbar, standardmäßig eingeklappt) ===== -->
+    <section class="menu-content menu-content--footer">
+      <div class="container menu-container">
         <div class="menu-allergens reveal">
           <h2 class="menu-allergens-title">
             <button type="button" class="menu-allergens-toggle" id="allergensToggle" aria-expanded="false" aria-controls="allergensPanel">
@@ -378,7 +520,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </main>

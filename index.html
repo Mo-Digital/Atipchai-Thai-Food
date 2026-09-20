@@ -215,77 +215,54 @@
         <p class="section-subtitle center reveal">Diese Gerichte lieben unsere Gäste am meisten – probier sie unbedingt.</p>
       </div>
 
-      <div class="carousel reveal">
-        <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev" aria-label="Vorherige Gerichte anzeigen">‹</button>
+      <div class="showcase-grid reveal">
+        <article class="showcase-tile showcase-tile--photo">
+          <picture>
+            <source srcset="assets/dish1.webp" type="image/webp">
+            <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Pad Thai – gebratene Reisnudeln mit Hähnchenfleisch, Erdnüssen und Limette von Atipchai Thai Food in Heilbronn" loading="lazy" width="700" height="875">
+          </picture>
+          <div class="showcase-tile-caption">
+            <h3>Pad Thai</h3>
+            <p>Gebratene Reisnudeln mit Ei, Sojasprossen und gerösteten Erdnüssen – Thailands berühmtestes Gericht.</p>
+          </div>
+        </article>
 
-        <div class="dish-track" id="dishTrack">
-          <article class="dish-card">
-            <!-- Bildausschnitt pro Karte per CSS-Variable --focus-y individuell justierbar (0% = oben, 100% = unten) -->
-            <div class="dish-image" style="--focus-y: 52%;">
-              <picture>
-                <source srcset="assets/dish1.webp" type="image/webp">
-                <img src="assets/dish1.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Gebratene Reisnudeln Pad Thai mit Hähnchenfleisch, Erdnüssen und Limette von Atipchai Thai Food in Heilbronn" loading="lazy" width="700" height="939">
-              </picture>
-            </div>
-            <div class="dish-body">
-              <h3>Pad Thai</h3>
-              <p>Gebratene Reisnudeln mit Hähnchenfleisch, Ei, Sojasprossen und gerösteten Erdnüssen – Thailands berühmtestes Gericht.</p>
-              <p class="dish-price">15,50&nbsp;€</p>
-            </div>
-          </article>
+        <article class="showcase-tile showcase-tile--text">
+          <div class="showcase-tile-caption">
+            <h3>Pad Krapao</h3>
+            <p>Gebratenes Basilikum mit Spiegelei, Chili und Knoblauch – würzig und aromatisch.</p>
+          </div>
+        </article>
 
-          <article class="dish-card">
-            <div class="dish-image" style="--focus-y: 68%;">
-              <picture>
-                <source srcset="assets/dish2.webp" type="image/webp">
-                <img src="assets/dish2.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Rindfleisch" loading="lazy" width="700" height="939">
-              </picture>
-            </div>
-            <div class="dish-body">
-              <h3>Nudelsuppe mit Rindfleisch</h3>
-              <p>Kräftige Rinderbrühe mit weichen Reisnudeln, zart geschmortem Rindfleisch und frischem Koriander.</p>
-              <p class="dish-price">20,30&nbsp;€</p>
-            </div>
-          </article>
+        <article class="showcase-tile showcase-tile--photo">
+          <img src="assets/mango-sticky-rice.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Mango Sticky Rice mit Klebreis und gesüßter Kokosmilch von Atipchai Thai Food in Heilbronn" loading="lazy">
+          <div class="showcase-tile-caption">
+            <h3>Mango Sticky Rice</h3>
+            <p>Klebreis in gesüßter Kokosmilch mit frischer Mango – unser beliebtestes Dessert.</p>
+          </div>
+        </article>
 
-          <article class="dish-card">
-            <div class="dish-image" style="--focus-y: 48%;">
-              <picture>
-                <source srcset="assets/dish3.webp" type="image/webp">
-                <img src="assets/dish3.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Papaya Salat" loading="lazy" width="700" height="939">
-              </picture>
-            </div>
-            <div class="dish-body">
-              <h3>Papaya Salat</h3>
-              <p>Erfrischender Som Tam aus grüner Papaya, Limette, Chili und gerösteten Erdnüssen – fruchtig-scharf und knackig.</p>
-              <p class="dish-price">16,70&nbsp;€</p>
-            </div>
-          </article>
+        <article class="showcase-tile showcase-tile--text">
+          <div class="showcase-tile-caption">
+            <h3>Tom Yum Gung</h3>
+            <p>Sauer-scharfe Garnelensuppe mit Zitronengras, Galgant und frischen Kräutern.</p>
+          </div>
+        </article>
 
-          <article class="dish-card">
-            <div class="dish-image" style="--focus-y: 50%;">
-              <img src="assets/dish4.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Mango mit Sticky Reis" loading="lazy">
-            </div>
-            <div class="dish-body">
-              <h3>Mango mit Sticky Reis</h3>
-              <p>Klebreis in gesüßter Kokosmilch mit frischer Mango – unser beliebtestes Dessert zum süßen Abschluss.</p>
-              <p class="dish-price">9,50&nbsp;€</p>
-            </div>
-          </article>
+        <article class="showcase-tile showcase-tile--photo">
+          <img src="assets/nudelsuppe-haehnchen.jpg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Hähnchenfleisch von Atipchai Thai Food in Heilbronn" loading="lazy">
+          <div class="showcase-tile-caption">
+            <h3>Nudelsuppe mit Hähnchen</h3>
+            <p>Reisnudeln mit zartem Hähnchenfleisch in würziger Thai-Brühe.</p>
+          </div>
+        </article>
 
-          <article class="dish-card">
-            <div class="dish-image" style="--focus-y: 50%;">
-              <img src="assets/dish5.jpeg" onerror="this.onerror=null;this.src='assets/dish-placeholder.svg'" alt="Nudelsuppe mit Hähnchenfleisch" loading="lazy">
-            </div>
-            <div class="dish-body">
-              <h3>Nudelsuppe mit Hähnchenfleisch</h3>
-              <p>Klare thailändische Nudelsuppe mit zartem Hähnchen, frischen Kräutern und einer würzig-aromatischen Brühe.</p>
-              <p class="dish-price">17,90&nbsp;€</p>
-            </div>
-          </article>
-        </div>
-
-        <button class="carousel-arrow carousel-arrow--next" id="carouselNext" aria-label="Weitere Gerichte anzeigen">›</button>
+        <article class="showcase-tile showcase-tile--text">
+          <div class="showcase-tile-caption">
+            <h3>Rotes Thai Curry</h3>
+            <p>Cremiges Curry mit Kokosmilch, Hähnchenfleisch und thailändischem Basilikum.</p>
+          </div>
+        </article>
       </div>
 
       <div class="container bestseller-cta reveal">

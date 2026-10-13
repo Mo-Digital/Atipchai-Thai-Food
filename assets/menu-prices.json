@@ -1,0 +1,93 @@
+{
+  "_hinweis": "Zentrale Preisdatei der Speisekarte. Preise hier aendern genuegt - speisekarte.html laedt diese Datei per fetch und rendert die Preise automatisch. 'nummer' bezieht sich auf die interne Nummerierung der Speisekarte (nicht auf der Webseite sichtbar). Bei Gerichten mit 'variants' wird rechts automatisch 'ab <niedrigster Preis> EUR' angezeigt und die Varianten werden in der Beschreibung aufgelistet.",
+  "dishes": {
+    "vorspeisen-fruehlingsrollen-vegetarisch": { "nummer": 1, "name": "Vegetarische Frühlingsrollen", "price": 6.90 },
+    "vorspeisen-haehnchen-satay": { "nummer": 2, "name": "Hähnchen-Satay", "price": 7.90 },
+    "vorspeisen-teigtaschen": { "nummer": 3, "name": "Frittierte Teigtaschen", "price": 6.90 },
+    "vorspeisen-fruehlingsrollen-hausgemacht": { "nummer": 4, "name": "Hausgemachte Frühlingsrollen", "price": 7.90 },
+    "vorspeisen-garnelen": { "nummer": 5, "name": "Frittierte Garnelen", "price": 8.90 },
+    "vorspeisen-frittiertes-fleisch": { "nummer": 6, "name": "Frittiertes Rindfleisch", "price": 12.90 },
+
+    "suppen-tomyum": { "nummer": 7, "name": "Tom Yum Gung", "price": 8.90 },
+    "suppen-kokossuppe": { "nummer": 8, "name": "Hähnchen-Kokossuppe", "price": 8.90 },
+    "suppen-nudelsuppe-rind": { "nummer": 10, "name": "Nudelsuppe mit Rindfleisch", "price": 16.90 },
+    "suppen-nudelsuppe-huhn": { "nummer": 11, "name": "Nudelsuppe mit Hühnchenfleisch", "price": 14.90 },
+
+    "salate-entensalat": { "nummer": 12, "name": "Scharfer Entensalat", "price": 16.90 },
+    "salate-haehnchensalat": { "nummer": 12, "name": "Scharfer Hähnchensalat", "price": 14.90 },
+
+    "currys-rotes-thai-curry": { "nummer": 9, "name": "Rotes Thai Curry", "price": 14.90 },
+
+    "hauptgerichte-pad-krapao": {
+      "nummer": 15,
+      "name": "Pad Krapao",
+      "variants": [
+        { "label": "Hähnchen", "price": 14.90 },
+        { "label": "Schwein", "price": 14.90 },
+        { "label": "Rind", "price": 16.90 }
+      ]
+    },
+    "hauptgerichte-pad-priew-wan": {
+      "nummer": 19,
+      "name": "Süß-Sauer Gebratenes Gemüse (Pad Priew Wan)",
+      "variants": [
+        { "label": "Hühnchenfleisch", "price": 14.90 },
+        { "label": "Schweinefleisch", "price": 14.90 },
+        { "label": "Garnelen", "price": 15.90 },
+        { "label": "Rindfleisch", "price": 16.90 }
+      ]
+    },
+
+    "reis-gebratener-reis": {
+      "nummer": 17,
+      "name": "Gebratener Reis (Khao Pad)",
+      "variants": [
+        { "label": "Vegetarisch", "price": 10.90 },
+        { "label": "Hühnchenfleisch", "price": 14.90 },
+        { "label": "Schweinefleisch", "price": 14.90 },
+        { "label": "Rindfleisch", "price": 16.90 }
+      ]
+    },
+    "reis-extraportion": { "name": "Extraportion Reis", "price": 2.00 },
+
+    "nudeln-pad-thai": {
+      "nummer": 18,
+      "name": "Pad Thai (Gebratene Reisnudeln)",
+      "variants": [
+        { "label": "Tofu", "price": 12.90 },
+        { "label": "Hühnchenfleisch", "price": 14.90 },
+        { "label": "Schweinefleisch", "price": 14.90 },
+        { "label": "Garnelen", "price": 16.90 },
+        { "label": "Ente", "price": 16.90 },
+        { "label": "Rindfleisch", "price": 16.90 }
+      ]
+    },
+
+    "fisch-makrele": { "nummer": 20, "name": "Gebratene Makrele", "price": 25.90 },
+    "fisch-tilapia": { "name": "Gebratener roter Tilapia", "price": 32.90 },
+    "fisch-fischfrikadelle": { "name": "Fischfrikadelle", "price": 15.90 },
+
+    "dessert-mango-sticky-rice": { "nummer": 22, "name": "Mango Sticky Rice", "price": 7.90 }
+  },
+  "drinks": {
+    "coca-cola": { "name": "Coca-Cola", "price": 2.50 },
+    "coca-cola-zero": { "name": "Coca-Cola Zero", "price": 2.50 },
+    "mezzo-mix": { "name": "Mezzo Mix", "price": 2.50 },
+    "eistee": { "name": "Eistee", "price": 2.50 },
+    "red-bull": { "name": "Red Bull", "price": 3.00 },
+    "orangensaft": { "name": "Orangensaft", "price": 2.50 },
+    "multivitaminsaft": { "name": "Multivitaminsaft", "price": 2.50 },
+    "mineralwasser": { "name": "Mineralwasser", "price": 1.50 },
+    "leo-bier": { "name": "Leo Thai Lagerbier", "price": 3.50 },
+    "singha": { "name": "Singha Thai Beer", "price": 3.50 },
+    "chang": { "name": "Chang Thai Bier", "price": 3.50 },
+    "becks": { "name": "Beck's", "price": 3.50 },
+    "franziskaner-hefe": { "name": "Franziskaner Hefe-Weizen", "price": 4.00 },
+    "franziskaner-kristall": { "name": "Franziskaner Kristall", "price": 4.00 },
+    "rotwein": { "name": "Rotwein", "price": 4.00 },
+    "weisswein": { "name": "Weißwein", "price": 4.00 },
+    "jacky-cola": { "name": "Jacky Cola", "price": 4.00 },
+    "kraeuterschnaps": { "name": "Thai Kräuterschnaps", "price": 3.00 },
+    "whisky": { "name": "Thai Whisky", "price": 3.00 }
+  }
+}

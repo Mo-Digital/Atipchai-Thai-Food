@@ -9,6 +9,7 @@
    6. Aktuelles Jahr im Footer
    7. Allergene-Accordion (Speisekarte)
    8. Kategorie-Navigation Scroll-Spy (Speisekarte)
+   9. Preise aus zentraler JSON-Datei laden (Speisekarte)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -276,5 +277,57 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     menuSections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  /* ---------- 9. Preise aus zentraler JSON-Datei laden (Speisekarte) ---------- */
+  // Nur auf speisekarte.html vorhanden. Alle Preise stehen in
+  // assets/menu-prices.json; diese Datei ist die einzige Stelle, die bei
+  // einer Preisänderung angepasst werden muss. Das HTML enthält die
+  // aktuell gültigen Preise bereits als Text (Fallback ohne JavaScript /
+  // falls der fetch fehlschlägt) — nach dem Laden ersetzt dieses Skript sie
+  // durch den Wert aus der JSON-Datei, damit künftige Änderungen nur dort
+  // nötig sind.
+  const priceEls = document.querySelectorAll("[data-price-id]");
+  const variantEls = document.querySelectorAll("[data-variants-id]");
+
+  if (priceEls.length || variantEls.length) {
+    // Deutsches Preisformat: 14.9 -> "14,90 €" (geschütztes Leerzeichen vor dem Euro-Zeichen)
+    const formatPrice = (value) => `${value.toFixed(2).replace(".", ",")} €`;
+
+    fetch("assets/menu-prices.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`menu-prices.json: HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        const allEntries = Object.assign({}, data.dishes, data.drinks);
+
+        priceEls.forEach((el) => {
+          const entry = allEntries[el.dataset.priceId];
+          if (!entry) return;
+
+          if (entry.variants) {
+            const lowest = Math.min(...entry.variants.map((variant) => variant.price));
+            el.textContent = `ab ${formatPrice(lowest)}`;
+          } else {
+            el.textContent = formatPrice(entry.price);
+          }
+        });
+
+        variantEls.forEach((el) => {
+          const entry = allEntries[el.dataset.variantsId];
+          if (!entry || !entry.variants) return;
+          el.textContent = entry.variants
+            .map((variant) => `${variant.label} ${formatPrice(variant.price)}`)
+            .join(" · ");
+        });
+      })
+      .catch((error) => {
+        // Fallback: die im HTML stehenden Preise bleiben sichtbar (siehe
+        // Kommentar oben) — nur die Varianten-Auflistung in der
+        // Beschreibung bliebe dann leer, daher hier eine Konsolenmeldung
+        // zur Fehlersuche statt eines stillen Fehlschlags.
+        console.error("Preise konnten nicht geladen werden:", error);
+      });
   }
 });
